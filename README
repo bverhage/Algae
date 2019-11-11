@@ -15,7 +15,7 @@ Is het bestand waar de gehele differentiaal vergelijking staat.
 
 Execution.py
 Is waar de magie gebeurt en de begin voorwaardes gebruikt worden om mooie resultaten te krijgen.
-Om het het programma te laten werken moet deze bestand gerunt worden.
+Om het het programma te laten werken moet dit bestand gerunt worden.
 
 NumericalSolvers.py
 Bevat een lijst van verschillende Numerische oplos toverspreuken.
