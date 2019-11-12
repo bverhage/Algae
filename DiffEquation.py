@@ -67,9 +67,7 @@ def f(t,w):
     #alpha
     ans=ans+alpha(t,w)
     #non linear part of P
-    ans=ans+non_linearP(t,w)
-    
-    ans=ans+non_linearH(t,w)
+    ans=ans+non_linear_transfere(t,w)
     
     return(ans)    
 
@@ -78,7 +76,7 @@ def f(t,w):
 
 ## ----------------Non linear funcitons-------------------
 def alpha(t,w):
-    ans=(0.03+0.01*np.cos(2*np.pi/365.25*t))*w[0,-1]
+    ans=(0.04+0.03*np.cos(2*np.pi/365.25*t))*w[0,-1]
     ans=np.array([
                  [ans],
                  [0]
@@ -86,20 +84,11 @@ def alpha(t,w):
     return(ans)
 
     
-def non_linearP(t,w):
-    ans=-const_c*(w[0,-1]-const_P0)/(const_k+w[0,-1]-const_P0)*w[1,-1]
+def non_linear_transfere(t,w):
+    ans=const_c*(w[0,-1]-const_P0)/(const_k+w[0,-1]-const_P0)*w[1,-1]
     ans=np.array([
-                 [ans],
-                 [0]
-                 ])
-    return(ans)
-    
-    
-def non_linearH(t,w):
-    ans=const_f*const_c*(w[0,-1]-const_P0)/(const_k+w[0,-1]-const_P0)*w[1,-1]
-    ans=np.array([
-                 [0],
-                 [ans]
+                 [-ans],
+                 [const_f*ans]
                  ])
     return(ans)
     
