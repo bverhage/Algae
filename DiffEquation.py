@@ -76,7 +76,7 @@ def f(t,w):
 
 ## ----------------Non linear funcitons-------------------
 def alpha(t,w):
-    ans=(0.04+0.03*np.cos(2*np.pi/365.25*t))*w[0,-1]
+    ans=(0.4+0.3*np.cos(2*np.pi/365.25*t))*w[0,-1]
     ans=np.array([
                  [ans],
                  [0]
@@ -85,7 +85,8 @@ def alpha(t,w):
 
     
 def non_linear_transfere(t,w):
-    ans=const_c*(w[0,-1]-const_P0)/(const_k+w[0,-1]-const_P0)*w[1,-1]
+    grazhingtheresehold=np.max([w[0,-1]-const_P0,0])
+    ans=const_c*(grazhingtheresehold)/(const_k+grazhingtheresehold)*w[1,-1]
     ans=np.array([
                  [-ans],
                  [const_f*ans]

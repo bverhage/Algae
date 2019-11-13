@@ -21,7 +21,7 @@ print('------ begin of code ------')
 t0=0
 
 #time ending point
-tE=365
+tE=365*4
 
 #step time
 dt=0.1
@@ -33,7 +33,7 @@ dt=0.1
 
 w0=np.block([
                 [0.12],
-                [0.001],
+                [0.1],
                 ])
 
 
