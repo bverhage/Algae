@@ -6,7 +6,7 @@ Run eerst DiffEquation.py, NumericalSolvers.py en plots.py zodat ze geladen zijn
 Hierna moet Execution.py gerunt worden om de magie in gang te zetten.
 (Dit moet in een keer kunnen en is dus een bug als iemand weet hoe ik dit kan oplossen, Call mee <3 Xxx code schrijver)
 ----------------------------------------------------
-Dit programma simuleerd de concentratie algen en plankton in water.
+Dit programma simuleert de concentratie algen en plankton in water.
 
 Het programma bestaat uit vier bestanden.
 
@@ -15,7 +15,7 @@ Is het bestand waar de gehele differentiaal vergelijking staat.
 
 Execution.py
 Is waar de magie gebeurt en de begin voorwaardes gebruikt worden om mooie resultaten te krijgen.
-Om het het programma te laten werken moet dit bestand gerunt worden.
+Om het programma te laten werken moet dit bestand gerunt worden.
 
 NumericalSolvers.py
 Bevat een lijst van verschillende Numerische oplos toverspreuken.
