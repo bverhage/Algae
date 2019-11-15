@@ -35,8 +35,8 @@ dt=0.1
 
 w0=np.block([
                 [60],       # M0 Inital mixed layer dept     
-                [0.2],         # N0 Inital nutrients concentration
-                [0.115],    # P0 Initial pythoplankton conenctration
+                [10],         # N0 Inital nutrients concentration
+                [0.2],    # P0 Initial pythoplankton conenctration
                 [0.01],    # H0 Initial herbivore concentration
                 ])
 
@@ -76,5 +76,7 @@ plots.cycleplot_plot(w,Time)
 plots.MN_plot(w,Time)
 
 plots.test_plot(w,Time)
+
+plots.change_plot(w,Time)
 
 print('------ end of code ------')

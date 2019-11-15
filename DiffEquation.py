@@ -84,11 +84,13 @@ def f(t,w):
     ##The total differential equation.
     
     #change of layer depth
-    #ans=0
     ans=changelayerdepht(t)
     
     #transfere from N to P
     ans=ans+NPtransfere(t,w)
+    
+    #transfere due to diffusion
+    ans=ans+diffusion(t,w)
     
     #concequences of the chaning layer depht
     ans=ans+swollowingmixedlayer(t,w)
@@ -150,7 +152,7 @@ def changelayerdepht(t):
     
 def alpha(t,w):
     #the photosynthetic rate of phytoplankton
-    ans=(0.4+0.3*np.cos(2*np.pi/365.25*t))
+    ans=(0.4-0.3*np.cos(2*np.pi/365.25*t))
 
     return(ans)
     
@@ -165,9 +167,20 @@ def NPtransfere(t,w):
                  ])
     return(ans)
     
+def diffusion(t,w):
+    ans=const_m/w[0,-1]
+    ans=np.array([
+                 [0],
+                 [ans*(const_N0-w[1,-1])],
+                 [-ans*w[2,-1]],
+                 [0]
+                 ])
+    
+    return(ans)
+
 def swollowingmixedlayer(t,w):
     #due to a swollowing mixed layer depth
-    ans=(const_m+np.max(xi(t),0))/w[0,-1]
+    ans=np.max(xi(t),0)/w[0,-1]
     ans=np.array([
                  [0],
                  [ans*(const_N0-w[1,-1])],
@@ -182,7 +195,7 @@ def PHtransfere(t,w):
     ans=const_c*(grazhingtheresehold)/(const_K+grazhingtheresehold)*w[3,-1]
     ans=np.array([
                  [0],
-                 [0],
+                 [(1-const_f)*ans],
                  [-1*ans],
                  [const_f*ans]
                  ])
