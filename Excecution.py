@@ -21,7 +21,7 @@ print('------ begin of code ------')
 t0=0
 
 #time ending point
-tE=365*4
+tE=365
 
 #step time
 dt=0.1
@@ -32,8 +32,10 @@ dt=0.1
 #creating the initial w matrix
 
 w0=np.block([
-                [0.12],
-                [0.1],
+                [60],       # M0 Inital mixed layer dept     
+                [0.1],         # N0 Inital nutrients concentration
+                [0.115],    # P0 Initial pythoplankton conenctration
+                [0.01],    # H0 Initial herbivore concentration
                 ])
 
 
@@ -67,6 +69,8 @@ while(Time[-1]<tE):
   
 ## --------------- The plots ---------------   
         
-plots.default_plot(w,Time)
+plots.cycleplot_plot(w,Time)
+
+plots.MN_plot(w,Time)
 
 print('------ end of code ------')
