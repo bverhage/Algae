@@ -1,3 +1,5 @@
+
+=======
 # -*- coding: utf-8 -*-
 """
 Created on Tue Oct 22 20:37:58 2019
@@ -6,9 +8,8 @@ Created on Tue Oct 22 20:37:58 2019
 """
 
 import numpy as np
-
+import matplotlib.pyplot as plt
 import plots
-
 from NumericalSolvers import RK,EF,TZ
 
 
@@ -21,11 +22,9 @@ print('------ begin of code ------')
 t0=0
 
 #time ending point
-
-tE=365
+tE=365*4
 
 #step time
-
 dt=0.1
 
 
@@ -39,7 +38,6 @@ w0=np.block([
                 [0.115],    # P0 Initial pythoplankton conenctration
                 [0.01],    # H0 Initial herbivore concentration
                 ])
-
 
 
 ## the first step 
@@ -60,7 +58,6 @@ while(Time[-1]<tE):
     #adding the next point to the numerical matrix w
     
     w=np.append(w,wn,axis=1)
-    
 
     #going to the next time step.
     
@@ -71,10 +68,7 @@ while(Time[-1]<tE):
   
 ## --------------- The plots ---------------   
         
-plots.cycleplot_plot(w,Time)
-
-plots.MN_plot(w,Time)
-
-plots.test_plot(w,Time)
+plots.default_plot(w,Time)
+plt.show()
 
 print('------ end of code ------')
