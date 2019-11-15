@@ -150,7 +150,7 @@ def changelayerdepht(t):
     
 def alpha(t,w):
     #the photosynthetic rate of phytoplankton
-    ans=(0.4+0.3*np.cos(2*np.pi/365.25*t))
+    ans=(0.4-0.3*np.cos(2*np.pi/365.25*t))
 
     return(ans)
     

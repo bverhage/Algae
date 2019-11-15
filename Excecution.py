@@ -1,5 +1,5 @@
 
-=======
+
 # -*- coding: utf-8 -*-
 """
 Created on Tue Oct 22 20:37:58 2019
@@ -22,7 +22,7 @@ print('------ begin of code ------')
 t0=0
 
 #time ending point
-tE=365*4
+tE=365
 
 #step time
 dt=0.1
@@ -66,9 +66,13 @@ while(Time[-1]<tE):
     #reitterating everything until tE
     
   
-## --------------- The plots ---------------   
-        
-plots.default_plot(w,Time)
+## --------------- The plots --------------- 
+    
+plots.cycleplot_plot(w,Time)
+
+plots.MN_plot(w,Time)
+
+plots.test_plot(w,Time)
 plt.show()
 
 print('------ end of code ------')
