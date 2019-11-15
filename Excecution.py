@@ -1,3 +1,5 @@
+
+=======
 # -*- coding: utf-8 -*-
 """
 Created on Tue Oct 22 20:37:58 2019
@@ -31,10 +33,11 @@ dt=0.1
 #creating the initial w matrix
 
 w0=np.block([
-                [0.12],
-                [0.1],
+                [60],       # M0 Inital mixed layer dept     
+                [0.2],         # N0 Inital nutrients concentration
+                [0.115],    # P0 Initial pythoplankton conenctration
+                [0.01],    # H0 Initial herbivore concentration
                 ])
-
 
 
 ## the first step 
