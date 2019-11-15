@@ -52,6 +52,24 @@ def MN_plot(w,Time):
     plt.title('nutrients')
     ax2.legend('nutrients')
     return;
+    
+def test_plot(w,Time):
+    
+    fig2 = plt.figure()
+    
+    ax = fig2.add_subplot(111)
+    plt.plot(Time,w[1,:],'--')
+    plt.plot(Time,w[2,:],'--')
+    plt.plot(Time,w[3,:],'--')
+    plt.plot(Time,w[1,:]+w[2,:]+w[3,:],'-')
+    plt.xlabel('Time (d)')
+    plt.ylabel('concentration (mmol/m^2)')
+    plt.title('Total Nitrogien in the system')
+    ax.legend(('Nutrients','phytoplankton','herbivore','Total Nitrogietn in the system'))
+
+    
+
+    return;
 
 
   

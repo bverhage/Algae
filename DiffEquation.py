@@ -10,35 +10,55 @@ if __name__ == "__main__":
     print("This is the Differential equation.")
     print("To run the programm run Excecution.py")
 
+#this should be interactive thus imported from excecution but this is curtently not the case
+#dt=0.5
+
 
 ## constants
 
 global const_N0
-const_N0=10
+##Deep nutreints
+const_N0=10 #mM m^-3
 
 global const_j
-const_j=0.5
+##Uptake half saturation
+const_j=0.5 #mM m^-3
 
 global const_r
-const_r=0.07
+##Plant metabolic loss
+const_r=0.07 #d^-1
+
+#const_r=0.07/dt #d^-1
 
 global const_P0
-const_P0=0.1
+##Grazing threshold
+const_P0=0.1 #mM m^-3
 
 global const_g
-const_g=0.07
+##Loss to carnivores
+const_g=0.07 #d^-1
+
+#const_g=0.07/dt
 
 global const_c
-const_c=1
+##maximum grazing rate
+const_c=1 #d^-1
 
-global const_k
-const_k=0.1
+#const_c=1/dt
+
+global const_K
+##Grazing half saturation
+const_K=1.0 #mM m^-3
 
 global const_f
-const_f=0.5
+##Grazing efficiency
+const_f=0.5 #-
 
 global const_m
-const_m=3
+##Diffusion rate
+const_m=3 #md^-1
+
+#const_m=3/dt
 
   
 ## ------------ the differential eq --------------    
@@ -51,36 +71,21 @@ def f(t,w):
         Returns:The next numerical approximation of the solution.
                 wn+1=[u1(n+1),u2(n+1),...,un(n+1)]^T'''
     
-    ## this is the linear part of the differential equation
-    ## Little is linair so this matrix A is moslty filled with 0
-    ## the dimentions of A are 4x4
-    ## The first value is M and the second N the third is P and the forth is H
-    ##  
+    
+    ## notice that w has the form
+    
     ##       | M | mixed layer dept             w[0,-1]
     ##       | N | nutrient concentration       w[1,-1]
     ##       | P | pythoplankton concentration  w[2,-1]
     ##       | H | herbivore concentration      w[3,-1]
     
-    A=np.array([
-                [0,0,0,0],
-                [0,0,0,0],
-                [0,0,0,0],
-                [0,0,0,-const_g]
-                ])
-    
-
-
-
-
 
     
     ##The total differential equation.
     
-    #Linear part
-    ans=A.dot(w)
-    
     #change of layer depth
-    ans=ans+changelayerdepht(t)
+    #ans=0
+    ans=changelayerdepht(t)
     
     #transfere from N to P
     ans=ans+NPtransfere(t,w)
@@ -90,6 +95,10 @@ def f(t,w):
         
     #transfere from P to H
     ans=ans+PHtransfere(t,w)
+    
+    #loss due to carnivores
+    ans=ans+losstoCarnifores(t,w)
+    
 
     return(ans)    
 
@@ -169,13 +178,23 @@ def swollowingmixedlayer(t,w):
 
 def PHtransfere(t,w):
     #due to the herbevores eating the pytho plankton
-    grazhingtheresehold=np.max([w[2,-1]-const_P0])
-    ans=const_c*(grazhingtheresehold)/(const_k+grazhingtheresehold)*w[3,-1]
+    grazhingtheresehold=np.max(w[2,-1]-const_P0,0)
+    ans=const_c*(grazhingtheresehold)/(const_K+grazhingtheresehold)*w[3,-1]
     ans=np.array([
                  [0],
                  [0],
                  [-1*ans],
                  [const_f*ans]
+                 ])
+    return(ans)
+    
+def losstoCarnifores(t,w):
+    # the loss of herbivores due to carnivores
+    ans=np.array([
+                 [0],
+                 [0],
+                 [0],
+                 [-const_g*w[3,-1]]
                  ])
     return(ans)
     
