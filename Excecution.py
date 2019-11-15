@@ -6,9 +6,8 @@ Created on Tue Oct 22 20:37:58 2019
 """
 
 import numpy as np
-
+import matplotlib.pyplot as plt
 import plots
-
 from NumericalSolvers import RK,EF,TZ
 
 
@@ -56,7 +55,6 @@ while(Time[-1]<tE):
     #adding the next point to the numerical matrix w
     
     w=np.append(w,wn,axis=1)
-    
 
     #going to the next time step.
     
@@ -68,5 +66,6 @@ while(Time[-1]<tE):
 ## --------------- The plots ---------------   
         
 plots.default_plot(w,Time)
+plt.show()
 
 print('------ end of code ------')
