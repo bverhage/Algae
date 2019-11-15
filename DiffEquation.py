@@ -10,9 +10,9 @@ if __name__ == "__main__":
     print("This is the Differential equation.")
     print("To run the programm run Excecution.py")
 
-#this should be interactive thus imported from excecution but this is curtently not the case
-#dt=0.5
 
+#This must be changed manualy but this is not how it should be.
+dt=0.5
 
 ## constants
 
@@ -28,7 +28,7 @@ global const_r
 ##Plant metabolic loss
 const_r=0.07 #d^-1
 
-#const_r=0.07/dt #d^-1
+const_r=0.07*dt #d^-1
 
 global const_P0
 ##Grazing threshold
@@ -38,13 +38,13 @@ global const_g
 ##Loss to carnivores
 const_g=0.07 #d^-1
 
-#const_g=0.07/dt
+const_g=0.07*dt
 
 global const_c
 ##maximum grazing rate
 const_c=1 #d^-1
 
-#const_c=1/dt
+const_c=1*dt
 
 global const_K
 ##Grazing half saturation
@@ -58,7 +58,7 @@ global const_m
 ##Diffusion rate
 const_m=3 #md^-1
 
-#const_m=3/dt
+const_m=3*dt
 
   
 ## ------------ the differential eq --------------    

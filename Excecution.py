@@ -22,11 +22,10 @@ t0=0
 
 #time ending point
 
-tE=365
+tE=365.25
 
 #step time
-
-dt=0.1
+dt=0.5
 
 
 # inital conditions
@@ -35,9 +34,9 @@ dt=0.1
 
 w0=np.block([
                 [60],       # M0 Inital mixed layer dept     
-                [10],         # N0 Inital nutrients concentration
-                [0.2],    # P0 Initial pythoplankton conenctration
-                [0.01],    # H0 Initial herbivore concentration
+                [9.64202509],         # N0 Inital nutrients concentration
+                [0.1545726],    # P0 Initial pythoplankton conenctration
+                [0.166578],    # H0 Initial herbivore concentration
                 ])
 
 
@@ -79,4 +78,14 @@ plots.test_plot(w,Time)
 
 plots.change_plot(w,Time)
 
+## -------------- The Errors ------------
+
+if np.min(w)<0:
+    print("ERROR, negative values!")
+    
+if np.max(w)>10**10:
+    print("ERROR, Unstable solution!")
+
 print('------ end of code ------')
+
+
