@@ -28,7 +28,7 @@ global const_r
 ##Plant metabolic loss
 const_r=0.07 #d^-1
 
-const_r=0.07*dt #d^-1
+#const_r=0.07*dt #d^-1
 
 global const_P0
 ##Grazing threshold
@@ -38,13 +38,13 @@ global const_g
 ##Loss to carnivores
 const_g=0.07 #d^-1
 
-const_g=0.07*dt
+#const_g=0.07*dt
 
 global const_c
 ##maximum grazing rate
 const_c=1 #d^-1
 
-const_c=1*dt
+#const_c=1*dt
 
 global const_K
 ##Grazing half saturation
@@ -58,7 +58,7 @@ global const_m
 ##Diffusion rate
 const_m=3 #md^-1
 
-const_m=3*dt
+#const_m=3*dt
 
   
 ## ------------ the differential eq --------------    
@@ -195,7 +195,7 @@ def PHtransfere(t,w):
     ans=const_c*(grazhingtheresehold)/(const_K+grazhingtheresehold)*w[3,-1]
     ans=np.array([
                  [0],
-                 [(1-const_f)*ans],
+                 [0],#(1-const_f)*ans],
                  [-1*ans],
                  [const_f*ans]
                  ])

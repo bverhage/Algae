@@ -11,6 +11,12 @@ import plots
 
 from NumericalSolvers import RK,EF,TZ
 
+from tqdm import tqdm 
+
+### if the porces bar does not work as expected in spyder
+### than use the following code in the console
+### conda install -c conda-forge tqdm
+
 
 print('------ begin of code ------')
 
@@ -22,7 +28,7 @@ t0=0
 
 #time ending point
 
-tE=365.25
+tE=365.25*10
 
 #step time
 dt=0.5
@@ -36,7 +42,7 @@ w0=np.block([
                 [60],       # M0 Inital mixed layer dept     
                 [9.64202509],         # N0 Inital nutrients concentration
                 [0.1545726],    # P0 Initial pythoplankton conenctration
-                [0.166578],    # H0 Initial herbivore concentration
+                [0.166578*0.1],    # H0 Initial herbivore concentration
                 ])
 
 
@@ -49,25 +55,35 @@ w=w0
 Time=[t0]
 
 
-##----------- The excecution --------------
-while(Time[-1]<tE):
-    
-    #appling the numerical method over the differnential eqation f.
-    
-    wn=RK(Time,w,dt)
-    
-    #adding the next point to the numerical matrix w
-    
-    w=np.append(w,wn,axis=1)
-    
 
-    #going to the next time step.
+
+
+##----------- The excecution --------------
+## It uses tqdm to create a proces bar.
+
+with tqdm(total=int(np.ceil(tE/dt))) as pbar:
+    while(Time[-1]<tE):
+        
+        #appling the numerical method over the differnential eqation f.
+        
+        wn=RK(Time,w,dt)
+        
+        #adding the next point to the numerical matrix w
+        
+        w=np.append(w,wn,axis=1)
+        
     
-    Time.append(Time[-1]+dt)
+        #going to the next time step.
+        
+        Time.append(Time[-1]+dt)
+        
+        #reitterating everything until tE
+        
+        ## updating the proces bar
     
-    #reitterating everything until tE
+        pbar.update(1)
     
-  
+      
 ## --------------- The plots ---------------   
         
 plots.cycleplot_plot(w,Time)
