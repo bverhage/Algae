@@ -11,8 +11,6 @@ if __name__ == "__main__":
     print("To run the programm run Excecution.py")
 
 
-#This must be changed manualy but this is not how it should be.
-dt=0.5
 
 ## constants
 
@@ -60,8 +58,21 @@ const_m=3 #md^-1
 
 #const_m=3*dt
 
-  
-## ------------ the differential eq --------------    
+## ----------- the total differential eq --------------
+def F(t,W):
+    ans=np.block([
+                [0],   
+                [0],
+                [0],
+                [0],
+                ])
+
+
+    ans=np.tile(ans,(len(W),1,1))
+    for i in range(1,len(W)):
+        ans[i]=f(t,W[i])
+    return(ans)
+## ------------ the internal differential eq --------------    
 def f(t,w):
     ''' The differential equation that has to be solved.
         imputs: t is time array

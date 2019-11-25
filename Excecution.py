@@ -23,6 +23,14 @@ print('------ begin of code ------')
 
 ## boundry conditions
 
+# space jump delta x
+Delta_x=1
+
+# number of delta x'es
+N=100
+
+## initial condition
+
 # time starting point  
 t0=0
 
@@ -33,9 +41,6 @@ tE=365.25
 #step time
 dt=0.5
 
-
-# inital conditions
-
 #creating the initial w matrix
 
 w0=np.block([
@@ -45,11 +50,13 @@ w0=np.block([
                 [0.166578],    # H0 Initial herbivore concentration
                 ])
 
+#creating the inital condition over the whole of the W
+W0=np.tile(w0,(N,1,1))
 
 
 ## the first step 
 ## the starting point for the total data matrix w
-w=w0
+W=W0
 
 ## the starting point for the time vector Time
 Time=[t0]
@@ -66,11 +73,11 @@ with tqdm(total=int(np.ceil(tE/dt))) as pbar:
         
         #appling the numerical method over the differnential eqation f.
         
-        wn=EF(Time,w,dt)
+        Wn=EF(Time,W,dt)
         
         #adding the next point to the numerical matrix w
         
-        w=np.append(w,wn,axis=1)
+        W=np.append(W,Wn,axis=2)
         
     
         #going to the next time step.

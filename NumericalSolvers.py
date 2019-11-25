@@ -17,7 +17,7 @@ This is a numeric differential equation solver
 
 import numpy as np
 
-from DiffEquation import f
+from DiffEquation import F
 
 
 if __name__ == "__main__":
@@ -43,7 +43,7 @@ def EF(Time,w,dt):
         
         Returns: wn+1=[u1(n+1),u2(n+1),...,un(n+1)]^T'''
     
-    ans=w[:,-1:]+dt*f(Time[-1],w[:,-1:]);
+    ans=w[:,:,-1:]+dt*F(Time[-1],w[:,:,-1:]);
     return(ans)
 
 def TZ(Time,w,dt):
