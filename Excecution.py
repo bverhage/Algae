@@ -28,7 +28,7 @@ t0=0
 
 #time ending point
 
-tE=365.25*10
+tE=365.25
 
 #step time
 dt=0.5
@@ -42,7 +42,7 @@ w0=np.block([
                 [60],       # M0 Inital mixed layer dept     
                 [9.64202509],         # N0 Inital nutrients concentration
                 [0.1545726],    # P0 Initial pythoplankton conenctration
-                [0.166578*0.1],    # H0 Initial herbivore concentration
+                [0.166578],    # H0 Initial herbivore concentration
                 ])
 
 
@@ -66,7 +66,7 @@ with tqdm(total=int(np.ceil(tE/dt))) as pbar:
         
         #appling the numerical method over the differnential eqation f.
         
-        wn=RK(Time,w,dt)
+        wn=EF(Time,w,dt)
         
         #adding the next point to the numerical matrix w
         
