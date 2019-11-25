@@ -60,15 +60,15 @@ const_m=3 #md^-1
 
 ## ----------- the total differential eq --------------
 def F(t,W):
+    #initializing the same structure as W for F
     ans=np.block([
                 [0],   
                 [0],
                 [0],
                 [0],
                 ])
-
-
     ans=np.tile(ans,(len(W),1,1))
+    #internal f over whole the F.
     for i in range(1,len(W)):
         ans[i]=f(t,W[i])
     return(ans)
