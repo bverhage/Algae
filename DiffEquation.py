@@ -60,6 +60,27 @@ const_m=3 #md^-1
 
 ## ----------- the total differential eq --------------
 def F(t,W):
+    ''' The Total differential equation for each x_n 
+        imputs: t time as array
+                W total matrix for every slice
+                W=[w(x1),w(x2),w(x3),...,w(xN)]
+                Where w(x1)=[w0(x1),w1(x1),...,wn(w1)]
+    '''
+    
+    ## notice that W has the form
+    
+    ## |w1| the w matrix for x=0 
+    ## |w2| the w matrix for x=deltax
+    ## |w3| the w matrix for x=2deltax
+    ##  .
+    ##  .
+    ##  .
+    ## |wN| the w matrix for x=Ndeltax
+    
+    ## to call the w of ith position xi The code
+    ## W[i]
+    
+    
     #initializing the same structure as W for F
     ans=np.block([
                 [0],   
