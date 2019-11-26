@@ -92,7 +92,7 @@ def change_plot(w,Time):
     plt.plot(Time,dw[1,:]+dw[2,:]+dw[3,:],'-')
     plt.xlabel('Time (d)')
     plt.ylabel('concentration (mmol m^-2s^-1)')
-    plt.title('d/dt Total system')
+    plt.title('Total system')
     ax.legend(('d/dt Nutrients','d/dt phytoplankton','d/dt herbivore','d/dt Total Nitrogietn in the system'))
     
     fig3 = plt.figure()
@@ -101,8 +101,59 @@ def change_plot(w,Time):
     plt.plot(Time,a,'-')
     plt.ylabel('growfactor alpha ')
     plt.title('alpha')
+    return;
     
+def test_plots(W,Time):
+    ## This function does not change correctly when N changes but that is easily fixable
+    ## N=100 is used. Feel free to change this.
+    
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    # plot x against the 1st element that is concentration nutrients H
+    plt.plot(range(0,100),W[:,1,1],'--')
+    plt.plot(range(0,100),W[:,2,1],'--')
+    plt.plot(range(0,100),W[:,3,1],'--')
+    plt.plot(range(0,100),W[:,1,1]+W[:,2,1]+W[:,3,1],'-')
+    plt.xlabel('X (m)')
+    plt.ylabel('concentration (mmol m^-2s^-1)')
+    plt.title('Total system x dependentcy')
+    ax.legend(('Nutrients(x)','phytoplankton(x)','herbivore(x)','Total Nitrogietn in the system(x)'))
+    
+    
+
+    fig = plt.figure()
+    ax = fig.add_subplot(221)
+    plt.imshow(W[:,0,:].reshape((100,732),order='F'))
+    plt.xlabel('Time (d)')
+    plt.ylabel('X (m)')
+    plt.title('Dept')
+    plt.colorbar()
+
+    
+
         
+    ax = fig.add_subplot(222)
+    plt.imshow(W[:,1,:].reshape((100,732),order='F'))    
+    plt.xlabel('Time (d)')
+    plt.ylabel('X (m)')
+    plt.title('Nutrients')
+    plt.colorbar()
+
+
+    ax = fig.add_subplot(223)
+    plt.imshow(W[:,2,:].reshape((100,732),order='F'))
+    plt.title('Pythoplankton')
+    plt.colorbar()
+
+    
+
+    ax = fig.add_subplot(224)
+    plt.imshow(W[:,3,:].reshape((100,732),order='F'))
+    plt.xlabel('Time (d)')
+    plt.ylabel('X (m)')
+    plt.title('Herbivores')
+    plt.colorbar()
+    plt.show()
     
     
 

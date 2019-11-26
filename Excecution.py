@@ -36,7 +36,7 @@ t0=0
 
 #time ending point
 
-tE=365.25
+tE=365.25*2
 
 #step time
 dt=0.5
@@ -92,21 +92,26 @@ with tqdm(total=int(np.ceil(tE/dt))) as pbar:
     
       
 ## --------------- The plots ---------------   
-        
-plots.cycleplot_plot(w,Time)
 
-plots.MN_plot(w,Time)
+## old plots not updated yett        
+#plots.cycleplot_plot(w,Time)
 
-plots.test_plot(w,Time)
+#plots.MN_plot(w,Time)
 
-plots.change_plot(w,Time)
+#plots.test_plot(w,Time)
+
+#plots.change_plot(w,Time)
+
+## new test plot
+
+plots.test_plots(W,Time)
 
 ## -------------- The Errors ------------
 
-if np.min(w)<0:
+if np.min(W)<0:
     print("ERROR, negative values!")
     
-if np.max(w)>10**10:
+if np.max(W)>10**10:
     print("ERROR, Unstable solution!")
 
 print('------ end of code ------')
