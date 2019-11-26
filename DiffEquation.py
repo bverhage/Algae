@@ -80,18 +80,11 @@ def F(t,W):
     ## to call the w of ith position xi The code
     ## W[i]
     
-    
-    #initializing the same structure as W for F
-    ans=np.block([
-                [0],   
-                [0],
-                [0],
-                [0],
-                ])
-    ans=np.tile(ans,(len(W),1,1))
     #internal f over whole the F.
+    ans=f(t,W[0])
     for i in range(1,len(W)):
-        ans[i]=f(t,W[i])
+        #ans[i]=f(t,W[i])
+        ans=np.append(ans,f(t,W[i]),axis=1)
     return(ans)
 ## ------------ the internal differential eq --------------    
 def f(t,w):
