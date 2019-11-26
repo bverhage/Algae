@@ -106,6 +106,7 @@ def change_plot(w,Time):
 def test_plots(W,Time):
     ## This function does not change correctly when N changes but that is easily fixable
     ## N=100 is used. Feel free to change this.
+    Xmax=100
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -123,7 +124,7 @@ def test_plots(W,Time):
 
     fig = plt.figure()
     ax = fig.add_subplot(221)
-    plt.imshow(W[:,0,:].reshape((100,732),order='F'))
+    plt.imshow(W[:,0,:].reshape((100,len(Time)),order='F'))
     plt.xlabel('Time (d)')
     plt.ylabel('X (m)')
     plt.title('Dept')
@@ -133,7 +134,7 @@ def test_plots(W,Time):
 
         
     ax = fig.add_subplot(222)
-    plt.imshow(W[:,1,:].reshape((100,732),order='F'))    
+    plt.imshow(W[:,1,:].reshape((100,len(Time)),order='F'))    
     plt.xlabel('Time (d)')
     plt.ylabel('X (m)')
     plt.title('Nutrients')
@@ -141,14 +142,14 @@ def test_plots(W,Time):
 
 
     ax = fig.add_subplot(223)
-    plt.imshow(W[:,2,:].reshape((100,732),order='F'))
+    plt.imshow(W[:,2,:].reshape((100,len(Time)),order='F'))
     plt.title('Pythoplankton')
     plt.colorbar()
 
     
 
     ax = fig.add_subplot(224)
-    plt.imshow(W[:,3,:].reshape((100,732),order='F'))
+    plt.imshow(W[:,3,:].reshape((100,len(Time)),order='F'))
     plt.xlabel('Time (d)')
     plt.ylabel('X (m)')
     plt.title('Herbivores')
