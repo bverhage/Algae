@@ -10,6 +10,7 @@ import plots
 from NumericalSolvers import RK,EF,TZ
 from tqdm import tqdm 
 
+
 ### if the porces bar does not work as expected in spyder
 ### than use the following code in the console
 ### conda install -c conda-forge tqdm
@@ -39,7 +40,7 @@ W=W0 # the first step, the starting point for the total data matrix w
 Time=[t0] # the starting point for the time vector Time
 
 
-##----------- The excecution --------------
+''' ----------- The execution -------------- '''
 
 ## It uses tqdm to create a proces bar.
 with tqdm(total=int(np.ceil(tE/dt))) as pbar:
@@ -60,7 +61,7 @@ with tqdm(total=int(np.ceil(tE/dt))) as pbar:
         pbar.update(1)
     
       
-## --------------- The plots ---------------   
+''' --------------- The plots --------------- '''
 
 ## old plots not updated yett        
 #plots.cycleplot_plot(w,Time)
@@ -74,7 +75,7 @@ with tqdm(total=int(np.ceil(tE/dt))) as pbar:
 ## new test plot
 plots.test_plots(W,Time)
 
-## -------------- The Errors ------------
+''' -------------- The Errors ------------ '''
 
 if np.min(W)<0:
     print("ERROR, negative values!")
