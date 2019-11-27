@@ -9,13 +9,21 @@ if __name__ == "__main__":
     print("To run the programm run Excecution.py")
     
 import numpy as np
-
 import matplotlib.pyplot as plt
 
 
-
-
 ##------------- The plots -----------------
+def test_plots(W,Time):
+    '''plots all plots - Joost'''
+    
+    #plots of slices at specific t and x respectively
+    tn,xn = 200, 1 #position of slices
+    TslicePlot(W,Time, tn) #slice plot at tn over all x
+    XslicePlot(W,Time, xn) #slice plot at xn over all t
+    
+    #2D (x,t) with color
+    colorplot(W,Time)
+    
 def cycleplot_plot(w,Time):
     
     fig3 = plt.figure()
@@ -103,55 +111,74 @@ def change_plot(w,Time):
     plt.title('alpha')
     return;
     
-def test_plots(W,Time):
-    ## This function does not change correctly when N changes but that is easily fixable
-    ## N=100 is used. Feel free to change this.
-    Xmax=100
+def TslicePlot(W,Time, tn):
+    '''slice plot at tn over all x'''
+    nX, nDim, nT = W.shape
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    # plot x against the 1st element that is concentration nutrients H
-    plt.plot(range(0,100),W[:,1,1],'--')
-    plt.plot(range(0,100),W[:,2,1],'--')
-    plt.plot(range(0,100),W[:,3,1],'--')
-    plt.plot(range(0,100),W[:,1,1]+W[:,2,1]+W[:,3,1],'-')
-    plt.xlabel('X (m)')
-    plt.ylabel('concentration (mmol m^-2s^-1)')
-    plt.title('Total system x dependentcy')
-    ax.legend(('Nutrients(x)','phytoplankton(x)','herbivore(x)','Total Nitrogietn in the system(x)'))
     
-    
+    # Spatial plot at t = tn
+    plt.plot(range(nX),W[:,1,tn],'-') #Nutrients #ERROR HERE
+    plt.plot(range(nX),W[:,2,tn],'-') #Phytoplankton
+    plt.plot(range(nX),W[:,3,tn],'-') #Herbivore
+    plt.plot(range(nX),sum([W[:,i,tn] for i in [1,2,3]]),'--')
+    plt.xlabel('x (m)')
+    plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
+    plt.title('x-dependency at time $t_{'+str(tn)+'}$')
+    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)','Total Nitrogen in the system(x)'))
 
+def XslicePlot(W,Time, xn):
+    '''slice plot at xn over all t'''
+    nX, nDim, nT = W.shape
+    
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    
+    # Temporal plot at x = xn
+    plt.plot(range(nT),W[xn,1,:],'-') #Nutrients
+    plt.plot(range(nT),W[xn,2,:],'-') #Phytoplankton
+    plt.plot(range(nT),W[xn,3,:],'-') #Herbivore
+    plt.plot(range(nT),sum([W[xn,i,:] for i in [1,2,3]]),'--')
+    plt.xlabel('Time (d)')
+    plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
+    plt.title('t-dependency at position $x_{'+str(xn)+'}$')
+    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)','Total Nitrogen in the system(x)'))
+    
+def colorplot(W,Time):
+    '''Plots all quantities for on whole (X x T) domain using a colorplot'''
+    nX, nDim, nT = W.shape
+    
+    #Depth
     fig = plt.figure()
     ax = fig.add_subplot(221)
-    plt.imshow(W[:,0,:].reshape((100,len(W[:,1,:][1])),order='F'))
+    plt.imshow(W[:,0,:].reshape((nX,len(W[:,1,:][1])),order='F'))
     plt.xlabel('Time (d)')
-    plt.ylabel('X (m)')
-    plt.title('Dept')
+    plt.ylabel('x (m)')
+    plt.title('Depth')
     plt.colorbar()
 
-    
-
-        
+    #Nutrietns
     ax = fig.add_subplot(222)
-    plt.imshow(W[:,1,:].reshape((100,len(W[:,1,:][1])),order='F'))    
+    plt.imshow(W[:,1,:].reshape((nX,len(W[:,1,:][1])),order='F'))    
     plt.xlabel('Time (d)')
-    plt.ylabel('X (m)')
+    plt.ylabel('x (m)')
     plt.title('Nutrients')
     plt.colorbar()
 
-
+    #Phytoplankton
     ax = fig.add_subplot(223)
-    plt.imshow(W[:,2,:].reshape((100,len(W[:,1,:][1])),order='F'))
-    plt.title('Pythoplankton')
-    plt.colorbar()
-
-    
-
-    ax = fig.add_subplot(224)
-    plt.imshow(W[:,3,:].reshape((100,len(W[:,1,:][1])),order='F'))
+    plt.imshow(W[:,2,:].reshape((nX,len(W[:,1,:][1])),order='F'))
     plt.xlabel('Time (d)')
-    plt.ylabel('X (m)')
+    plt.ylabel('x (m)')
+    plt.title('Phytoplankton')
+    plt.colorbar()
+    
+    #Herbivores
+    ax = fig.add_subplot(224)
+    plt.imshow(W[:,3,:].reshape((nX,len(W[:,1,:][1])),order='F'))
+    plt.xlabel('Time (d)')
+    plt.ylabel('x (m)')
     plt.title('Herbivores')
     plt.colorbar()
     

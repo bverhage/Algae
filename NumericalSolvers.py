@@ -9,14 +9,7 @@ Created on Tue Oct 22 20:36:17 2019
 This is a numeric differential equation solver
 """
 
-
-## preperation
-
-
-#does not work as I want it to
-
 import numpy as np
-
 from DiffEquation import F
 
 
@@ -24,11 +17,6 @@ if __name__ == "__main__":
     
     print("This is the Numerical Solver program.")
     print("To run the programm run Excecution.py")
-
-
-
-
-
 
 ##functions
 ## functions for numeric diff.eq solving

@@ -12,51 +12,34 @@ if __name__ == "__main__":
 
 
 
-## constants
-
-global const_N0
-##Deep nutreints
+''' Constants '''
+global const_N0 #Deep nutreints
 const_N0=10 #mM m^-3
 
-global const_j
-##Uptake half saturation
+global const_j #Uptake half saturation
 const_j=0.5 #mM m^-3
 
-global const_r
-##Plant metabolic loss
+global const_r #Plant metabolic loss
 const_r=0.07 #d^-1
 
-#const_r=0.07*dt #d^-1
-
-global const_P0
-##Grazing threshold
+global const_P0 #Grazing threshold
 const_P0=0.1 #mM m^-3
 
-global const_g
-##Loss to carnivores
+global const_g #Loss to carnivores
 const_g=0.07 #d^-1
 
-#const_g=0.07*dt
-
-global const_c
-##maximum grazing rate
+global const_c #maximum grazing rate
 const_c=1 #d^-1
 
-#const_c=1*dt
-
-global const_K
-##Grazing half saturation
+global const_K #Grazing half saturation
 const_K=1.0 #mM m^-3
 
-global const_f
-##Grazing efficiency
+global const_f #Grazing efficiency
 const_f=0.5 #-
 
-global const_m
-##Diffusion rate
+global const_m #Diffusion rate
 const_m=3 #md^-1
 
-#const_m=3*dt
 
 ## ----------- the total differential eq --------------
 def F(t,W):
@@ -65,28 +48,28 @@ def F(t,W):
                 W total matrix for every slice
                 W=[w(x1),w(x2),w(x3),...,w(xN)]
                 Where w(x1)=[w0(x1),w1(x1),...,wn(w1)]
+    
+    notice that W has the form
+    
+    |w1| the w matrix for x=0 
+    |w2| the w matrix for x=deltax
+    |w3| the w matrix for x=2deltax
+     .
+     . 
+     .
+    |wN| the w matrix for x=Ndeltax
+    
+    to call the w of ith position xi The code: W[i]
     '''
     nX, nD, _ = W.shape #size of grid and number of dimensions
-    
-    ## notice that W has the form
-    
-    ## |w1| the w matrix for x=0 
-    ## |w2| the w matrix for x=deltax
-    ## |w3| the w matrix for x=2deltax
-    ##  .
-    ##  .
-    ##  .
-    ## |wN| the w matrix for x=Ndeltax
-    
-    ## to call the w of ith position xi The code
-    ## W[i]
     
     #internal f over whole the F.
     ans=f(t,W[0])
     for i in range(1,len(W)):
-        #ans[i]=f(t,W[i])
         ans=np.append(ans,f(t,W[i]),axis=1)
     return(ans.transpose().reshape(((nX,nD,1))))
+    
+    
 ## ------------ the internal differential eq --------------    
 def f(t,w):
     ''' The differential equation that has to be solved.
@@ -95,34 +78,33 @@ def f(t,w):
                 with wi=[u1(i),u2(i),u3(i),...,um(i)]^T
                 
         Returns:The next numerical approximation of the solution.
-                wn+1=[u1(n+1),u2(n+1),...,un(n+1)]^T'''
+                wn+1=[u1(n+1),u2(n+1),...,un(n+1)]^T
     
     
     ## notice that w has the form
-    
+    ##
     ##       | M | mixed layer dept             w[0,-1]
     ##       | N | nutrient concentration       w[1,-1]
     ##       | P | pythoplankton concentration  w[2,-1]
     ##       | H | herbivore concentration      w[3,-1]
-    
+    '''
 
-    
     ##The total differential equation.
     
     #change of layer depth
-    ans=changelayerdepht(t)
+    ans=changelayerdepth(t)
     
-    #transfere from N to P
-    ans=ans+NPtransfere(t,w)
+    #transfer from N to P
+    ans=ans+NPtransfer(t,w)
     
-    #transfere due to diffusion
+    #transfer due to diffusion
     ans=ans+diffusion(t,w)
     
     #concequences of the chaning layer depht
     ans=ans+swollowingmixedlayer(t,w)
         
-    #transfere from P to H
-    ans=ans+PHtransfere(t,w)
+    #transfer from P to H
+    ans=ans+PHtransfer(t,w)
     
     #loss due to carnivores
     ans=ans+losstoCarnifores(t,w)
@@ -167,7 +149,7 @@ def xi(t):
     return(ans)
         
     
-def changelayerdepht(t):
+def changelayerdepth(t):
     ans=np.array([
                  [xi(t)],
                  [0],
@@ -182,7 +164,7 @@ def alpha(t,w):
 
     return(ans)
     
-def NPtransfere(t,w):
+def NPtransfer(t,w):
     #due to pythoplankton eating the nutrients
     ans=(alpha(t,w)*w[1,-1]/(const_j+w[1,-1])-const_r)*w[2,-1]
     ans=np.array([
@@ -205,7 +187,7 @@ def diffusion(t,w):
     return(ans)
 
 def swollowingmixedlayer(t,w):
-    #due to a swollowing mixed layer depth
+    '''due to a swollowing mixed layer depth'''
     ans=np.max(xi(t),0)/w[0,-1]
     ans=np.array([
                  [0],
@@ -215,10 +197,10 @@ def swollowingmixedlayer(t,w):
                  ])
     return(ans)
 
-def PHtransfere(t,w):
-    #due to the herbevores eating the pytho plankton
-    grazhingtheresehold=np.max(w[2,-1]-const_P0,0)
-    ans=const_c*(grazhingtheresehold)/(const_K+grazhingtheresehold)*w[3,-1]
+def PHtransfer(t,w):
+    '''due to the herbevores eating the pytho plankton'''
+    grazingthreshold=np.max(w[2,-1]-const_P0,0)
+    ans=const_c*(grazingthreshold)/(const_K+grazingthreshold)*w[3,-1]
     ans=np.array([
                  [0],
                  [0],#(1-const_f)*ans],
