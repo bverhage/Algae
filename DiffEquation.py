@@ -66,6 +66,7 @@ def F(t,W):
                 W=[w(x1),w(x2),w(x3),...,w(xN)]
                 Where w(x1)=[w0(x1),w1(x1),...,wn(w1)]
     '''
+    nX, nD, _ = W.shape #size of grid and number of dimensions
     
     ## notice that W has the form
     
@@ -85,7 +86,7 @@ def F(t,W):
     for i in range(1,len(W)):
         #ans[i]=f(t,W[i])
         ans=np.append(ans,f(t,W[i]),axis=1)
-    return(ans)
+    return(ans.transpose().reshape(((nX,nD,1))))
 ## ------------ the internal differential eq --------------    
 def f(t,w):
     ''' The differential equation that has to be solved.

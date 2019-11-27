@@ -73,7 +73,7 @@ with tqdm(total=int(np.ceil(tE/dt))) as pbar:
         
         #appling the numerical method over the differnential eqation f.
         
-        Wn=RK(Time,W,dt)
+        Wn=EF(Time,W,dt)
         
         #adding the next point to the numerical matrix w
         
