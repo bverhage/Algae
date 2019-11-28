@@ -47,7 +47,7 @@ with tqdm(total=int(np.ceil(tE/dt))) as pbar:
     while(Time[-1]<tE):
         
         #appling the numerical method over the differnential eqation f.
-        Wn=EF(Time,W,dt)
+        Wn=RK(Time,W,dt)
         
         #adding the next point to the numerical matrix w
         W=np.append(W,Wn,axis=2)
