@@ -28,7 +28,7 @@ t0=0
 
 #time ending point
 
-tE=365.25*10
+tE=365.25
 
 #step time
 dt=0.5
@@ -86,9 +86,9 @@ with tqdm(total=int(np.ceil(tE/dt))) as pbar:
       
 ## --------------- The plots ---------------   
         
-plots.cycleplot_plot(w,Time)
+#plots.cycleplot_plot(w,Time)
 
-plots.MN_plot(w,Time)
+#plots.MN_plot(w,Time)
 
 plots.test_plot(w,Time)
 

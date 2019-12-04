@@ -73,27 +73,27 @@ def change_plot(w,Time):
     
     dw=f(Time[0],w[:,[0]])
     
-    a=np.array([alpha(Time[0],w[:,[0]])])
+    a=np.array([alpha(Time[0],w[0,0],w[2,0])])
     
     for i in range(1, len(Time)):
         
         ndw=f(Time[i],w[:,[i]])
         
-        na=alpha(Time[i],w[:,[i]])
+        na=alpha(Time[i],w[0,i],w[2,i])
         
         dw=np.append(dw,ndw,axis=1)
         a=np.append(a,na)
         
-    fig2 = plt.figure()
-    ax = fig2.add_subplot(111)
-    plt.plot(Time,dw[1,:],'--')
-    plt.plot(Time,dw[2,:],'--')
-    plt.plot(Time,dw[3,:],'--')
-    plt.plot(Time,dw[1,:]+dw[2,:]+dw[3,:],'-')
-    plt.xlabel('Time (d)')
-    plt.ylabel('concentration (mmol m^-2s^-1)')
-    plt.title('d/dt Total system')
-    ax.legend(('d/dt Nutrients','d/dt phytoplankton','d/dt herbivore','d/dt Total Nitrogietn in the system'))
+#    fig2 = plt.figure()
+#    ax = fig2.add_subplot(111)
+#    plt.plot(Time,dw[1,:],'--')
+#    plt.plot(Time,dw[2,:],'--')
+#    plt.plot(Time,dw[3,:],'--')
+#    plt.plot(Time,dw[1,:]+dw[2,:]+dw[3,:],'-')
+#    plt.xlabel('Time (d)')
+#    plt.ylabel('concentration (mmol m^-2s^-1)')
+#    plt.title('d/dt Total system')
+#    ax.legend(('d/dt Nutrients','d/dt phytoplankton','d/dt herbivore','d/dt Total Nitrogietn in the system'))
     
     fig3 = plt.figure()
     ax = fig3.add_subplot(111)

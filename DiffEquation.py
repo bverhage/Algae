@@ -138,6 +138,8 @@ def xi(t):
         ans=(60-20)/(4*365.25/12)
     elif m==12:
         ans=(60-20)/(4*365.25/12)
+        
+    ans=0
     return(ans)
         
     
@@ -150,15 +152,26 @@ def changelayerdepht(t):
                  ])
     return(ans)
     
-def alpha(t,w):
-    #the photosynthetic rate of phytoplankton
-    ans=(0.4-0.3*np.cos(2*np.pi/365.25*t))
-
+def F(y,t):
+    ans=(((y**2)+(t**2))**(1/2))-t*np.log((t+((y**2)+(t**2))**(1/2))/y)
+    return(ans)
+    
+def alpha(t,M,P):
+    #the photosynthetic rate of phytoplankton 
+    #M=w[0,-1]
+    #P=w[2,-1]
+    Q=2
+    k=0.10  #?
+    teta=0.5
+    alfaJ=4*2   #J #?
+    #alfa=(0.4-0.3*np.cos(2*np.pi/365.25*t))
+    beta=Q*teta/alfaJ
+    ans=((2*Q)/(M*k))*(F(beta*np.e**(k*M),teta)-F(beta,teta)-F(beta*np.e**(k*M),0)+F(beta,0))*np.min([(P**(-1/3)),1])
     return(ans)
     
 def NPtransfere(t,w):
     #due to pythoplankton eating the nutrients
-    ans=(alpha(t,w)*w[1,-1]/(const_j+w[1,-1])-const_r)*w[2,-1]
+    ans=(alpha(t,w[0,-1],w[2,-1])*w[1,-1]/(const_j+w[1,-1])-const_r)*w[2,-1]
     ans=np.array([
                  [0],
                  [-ans],
