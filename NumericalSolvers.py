@@ -5,16 +5,15 @@ Created on Tue Oct 22 20:36:17 2019
 @author: billy
 """
 
-"""
-This is a numeric differential equation solver
-"""
+""" This is a numeric differential equation solver """
 
-import numpy as np
-from DiffEquation import F
+print("hi")
+from classes.classDifferentialEquation import differentialEquation
+F = differentialEquation.F
+print("bye")
 
 
 if __name__ == "__main__":
-    
     print("This is the Numerical Solver program.")
     print("To run the programm run Excecution.py")
 
