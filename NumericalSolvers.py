@@ -6,20 +6,13 @@ Created on Tue Oct 22 20:36:17 2019
 """
 
 """ This is a numeric differential equation solver """
-
-print("hi")
-from classes.classDifferentialEquation import differentialEquation
-F = differentialEquation.F
-print("bye")
-
-
 if __name__ == "__main__":
     print("This is the Numerical Solver program.")
     print("To run the programm run Excecution.py")
 
 ##functions
 ## functions for numeric diff.eq solving
-def EF(Time,w,dt):
+def EF(Time,w,dt, F):
     ''' Euler forward numerical integration method
         w_(n+1)=w_n+dt*f(tn,wn)
         
@@ -33,7 +26,7 @@ def EF(Time,w,dt):
     ans=w[:,:,-1:]+dt*F(Time[-1],w[:,:,-1:]);
     return(ans)
 
-def TZ(Time,w,dt):
+def TZ(Time,w,dt, F):
     ''' Trapezodial numerical integration method
         w_(n+1)=w_n+dt*(f(t_n,w_n)+f(tn+dt,w*_(n+1)))/2
         with w*_(n+1)=w_n+dt*f(tn,wn)
@@ -51,7 +44,7 @@ def TZ(Time,w,dt):
     
     return(ans)
     
-def RK(Time,w,dt):
+def RK(Time,w,dt, F):
     ''' Runge-Kutta integrtion method
         w_(n+1)=w_n+1/6(k1+2k2+2k3+k4)
         
