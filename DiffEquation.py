@@ -139,7 +139,6 @@ def xi(t):
     elif m==12:
         ans=(60-20)/(4*365.25/12)
         
-    ans=0
     return(ans)
         
     
