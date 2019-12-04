@@ -8,6 +8,14 @@ import numpy as np
 from NumericalSolvers import RK,EF,TZ
 from tqdm import tqdm 
 
+# importing change functions
+from classes.classTransfer import transfer
+internalExchange = transfer.internalExchange
+from classes.classDiffusion import diffusion
+totalDiffusion = diffusion.totalDiffusion
+from classes.classCurrent import current
+totalCurrent = current.totalCurrent
+
 
 if __name__ == "__main__":    
     print("This is the Differential equation.")
@@ -80,9 +88,11 @@ class differentialEquation:
         return(ans)    
     
     def execute(M0,N0,P0,H0):
-        #creating the initial w matrix
+        '''Executing the method with initial condition M0,N0,P0,H0'''
+        NumMet = RK #Numerical Method
         
         ''' ----------- Initialisation -------------- '''
+        #creating the initial w matrix
         w0=np.block([
                         [M0],       # M0 Inital mixed layer dept     
                         [N0],         # N0 Inital nutrients concentration
@@ -103,7 +113,7 @@ class differentialEquation:
             while(Time[-1]<differentialEquation.tE):
                 
                 #appling the numerical method over the differnential eqation f.
-                Wn=EF(Time,W,differentialEquation.dt)
+                Wn=NumMet(Time,W,differentialEquation.dt, differentialEquation.F)
                 
                 #adding the next point to the numerical matrix w
                 W=np.append(W,Wn,axis=2)
