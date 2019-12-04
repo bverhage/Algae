@@ -9,26 +9,14 @@ Created on Tue Oct 22 20:36:17 2019
 This is a numeric differential equation solver
 """
 
-
-## preperation
-
-
-#does not work as I want it to
-
 import numpy as np
-
-from DiffEquation import f
+from DiffEquation import F
 
 
 if __name__ == "__main__":
     
     print("This is the Numerical Solver program.")
     print("To run the programm run Excecution.py")
-
-
-
-
-
 
 ##functions
 ## functions for numeric diff.eq solving
@@ -43,7 +31,7 @@ def EF(Time,w,dt):
         
         Returns: wn+1=[u1(n+1),u2(n+1),...,un(n+1)]^T'''
     
-    ans=w[:,-1:]+dt*f(Time[-1],w[:,-1:]);
+    ans=w[:,:,-1:]+dt*F(Time[-1],w[:,:,-1:]);
     return(ans)
 
 def TZ(Time,w,dt):
@@ -60,7 +48,7 @@ def TZ(Time,w,dt):
         
         
     
-    ans= w[:,-1:]+dt/2*(f(Time[-1],w[:,-1:])+f(Time[-1]+dt,w[:,-1:]+dt*f(Time[-1],w[:,-1:])));
+    ans= w[:,:,-1:]+dt/2*(F(Time[-1],)+F(Time[-1]+dt,w[:,:,-1:]+dt*F(Time[-1],w[:,:,-1:])));
     
     return(ans)
     
@@ -80,15 +68,15 @@ def RK(Time,w,dt):
         
         Returns: wn+1=[u1(n+1),u2(n+1),...,un(n+1)]^T'''
     
-    k1=dt*f(Time[-1],w[:,-1:])
+    k1=dt*F(Time[-1],w[:,:,-1:])
     
-    k2=dt*f(Time[-1]+dt/2,w[:,-1:]+k1/2)
+    k2=dt*F(Time[-1]+dt/2,w[:,:,-1:]+k1/2)
     
-    k3=dt*f(Time[-1]+dt/2,w[:,-1:]+k2/2)
+    k3=dt*F(Time[-1]+dt/2,w[:,:,-1:]+k2/2)
     
-    k4=dt*f(Time[-1]+dt,w[:,-1:]+k3)
+    k4=dt*F(Time[-1]+dt,w[:,:,-1:]+k3)
     
-    ans=w[:,-1:]+1/6*(k1+2*k2+2*k3+k4)
+    ans=w[:,:,-1:]+1/6*(k1+2*k2+2*k3+k4)
     
     return(ans)
     
