@@ -16,6 +16,8 @@ totalDiffusion = diffusion.totalDiffusion
 from classes.classCurrent import current
 totalCurrent = current.totalCurrent
 
+import InitialConditions
+
 
 if __name__ == "__main__":    
     print("This is the Differential equation.")
@@ -92,20 +94,9 @@ class differentialEquation:
         NumMet = RK #Numerical Method
         
         ''' ----------- Initialisation -------------- '''
+        
         #creating the initial w matrix
-        w0=np.block([
-                        [M0],       # M0 Inital mixed layer dept     
-                        [N0],         # N0 Inital nutrients concentration
-                        [P0],    # P0 Initial pythoplankton conenctration
-                        [H0],    # H0 Initial herbivore concentration
-                        ])
-        W0=np.tile(w0,(differentialEquation.N,1,1)) #creating the inital condition over the whole of the W
-        
-        X=np.linspace(0,differentialEquation.N*differentialEquation.dx,differentialEquation.N)
-        #W0[:,1,:]=0.0*W0[:,1,:]+5*np.exp(-0.1*(X-50)**(2)).reshape(differentialEquation.N,1)
-        W0[:,2,:]=0.0*W0[:,2,:]+1*P0/differentialEquation.N*X.reshape(differentialEquation.N,1)
-        
-        
+        W0=InitialConditions.IC1(differentialEquation.dx,differentialEquation.N)
         W=W0 # the first step, the starting point for the total data matrix w
         Time=[differentialEquation.t0] # the starting point for the time vector Time
         
