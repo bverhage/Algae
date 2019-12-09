@@ -31,7 +31,7 @@ t0=0
 tE=365.25
 
 #step time
-dt=0.5
+dt=0.1
 
 
 # inital conditions

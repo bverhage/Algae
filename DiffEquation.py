@@ -180,7 +180,7 @@ def diffusion(t,w):
 
 def swollowingmixedlayer(t,w):
     #due to a swollowing mixed layer depth
-    ans=np.max(xi(t),0)/w[0,-1]
+    ans=np.max([xi(t),0])/w[0,-1]
     ans=np.array([
                  [0],
                  [ans*(const_N0-w[1,-1])],
@@ -190,8 +190,9 @@ def swollowingmixedlayer(t,w):
     return(ans)
 
 def PHtransfere(t,w):
+    
     #due to the herbevores eating the pytho plankton
-    grazhingtheresehold=np.max(w[2,-1]-const_P0,0)
+    grazhingtheresehold=np.max([w[2,-1]-const_P0,0])
     ans=const_c*(grazhingtheresehold)/(const_K+grazhingtheresehold)*w[3,-1]
     ans=np.array([
                  [0],
