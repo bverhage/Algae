@@ -6,6 +6,10 @@ Created on Mon Dec  2 15:49:03 2019
 """
 import numpy as np
 
+def unit(value,size,index):
+    '''returns basis vector e_index with dimension size times value'''
+    return value*np.eye(1,size,index).reshape(size)
+    
 def diagMatrix(n,L,M,R):
     '''makes square (nxn) matrix with
         L on the left off diagonal
@@ -23,16 +27,28 @@ def diagMatrix(n,L,M,R):
     np.fill_diagonal(mat[:,1:],leftOff)
     return mat
 
-def secondDerivative(t,y,dx):
+def secondDerivative(y,dx,boundary = (0,0)):
     '''computes second derivative numerically
-    t: time vector
     y(x): vector
     dx: spatial step size
+    boundary tuple: (Lbound,Rbound) dirichelet, default is (0,0)
     '''
+    Lb,Rb = boundary
+    
     n = len(y)
     mat = diagMatrix(n,1,-2,1)
-    return 1/dx**2*mat.dot(w)
+    sd = 1/dx**2*(mat.dot(y) + unit(Lb,n,0) + unit(Rb,n,-1)) #np.eye(1,size,index)
+    return sd
 
-def firstDerivative(t,w,n,dx):
+def firstDerivative(y,dx, boundary = (0,0)):
+    '''computes second derivative numerically
+    y(x): vector
+    dx: spatial step size
+    boundary tuple: (Lbound,Rbound) dirichelet, default is (0,0)
+    '''
+    Lb,Rb = boundary
+    
+    n = len(y)
     mat = diagMatrix(n,-1,0,1)
-    return 1/(2*dx)*mat.dot(w)
+    fd = 1/(2*dx)*(mat.dot(y)+ unit(Lb,n,0) + unit(Rb,n,0)) #np.eye(1,size,index)
+    return fd
