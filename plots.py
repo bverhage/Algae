@@ -183,12 +183,9 @@ def colorplot(W,Time):
     plt.title('Herbivores')
     plt.colorbar()
     
-    plt.show()
-    
-def Xslider(W,Time):
+def Tslider(W,Time):
     '''slice plot at varing t over all x using a slider '''
     nX, nDim, nT = W.shape
-
     # generate figure
     fig = plt.figure()
     ax = plt.subplot(111)
@@ -235,10 +232,8 @@ def Xslider(W,Time):
     
     slider.on_changed(update)
     
-    plt.show()
-    
 
-def Tslider(W,Time):
+def Xslider(W,Time):
     '''slice plot at varing x over all t using a slider '''
     nX, nDim, nT = W.shape
 
@@ -265,7 +260,6 @@ def Tslider(W,Time):
     ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)','Total Nitrogen in the system(x)'))
     
     # define slider
-    axcolor = 'lightgoldenrodyellow'
     ax = fig.add_axes([0.25, 0.1, 0.65, 0.03])
     
     slider = Slider(ax, 'X position', 0, nX - 1,valinit=0, valfmt='%i')
@@ -286,6 +280,4 @@ def Tslider(W,Time):
         fig.canvas.draw()
     
     slider.on_changed(update)
-    
-    plt.show()
       
