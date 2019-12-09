@@ -10,6 +10,7 @@ if __name__ == "__main__":
     
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider
 
 
 ##------------- The plots -----------------
@@ -184,7 +185,107 @@ def colorplot(W,Time):
     
     plt.show()
     
+def Xslider(W,Time):
+    '''slice plot at varing t over all x using a slider '''
+    nX, nDim, nT = W.shape
+
+    # generate figure
+    fig = plt.figure()
+    ax = plt.subplot(111)
+    fig.subplots_adjust(left=0.25, bottom=0.25)
+    
+    # select first image
+
+    N = W[:,1,0].squeeze()
+    P = W[:,2,0].squeeze()
+    H = W[:,3,0].squeeze()
+    
+    
+    # display image
+    lN, = ax.plot(range(nX),N)
+    lP, = ax.plot(range(nX),P)
+    lH, = ax.plot(range(nX),H)
+    
+    plt.xlabel('x (m)')
+    plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
+    plt.title('x-dependency at varing time ')
+    plt.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)','Total Nitrogen in the system(x)'))
+    
+    # define slider
+    
+    ax = fig.add_axes([0.25, 0.1, 0.65, 0.03])
+    
+    slider = Slider(ax, 'Time in steps', 0, nT - 1,valinit=0, valfmt='%i')
+    
+    def update(val):
+        ind = int(slider.val)
+        
+        #ydata
+        N = W[:,1,ind].squeeze()
+        P = W[:,2,ind].squeeze()
+        H = W[:,3,ind].squeeze()
+    
+        xdata=range(nX)
+        lN.set_data(xdata,N)
+        lP.set_data(xdata,P)
+        lH.set_data(xdata,H)
+        
+        
+        fig.canvas.draw()
+    
+    slider.on_changed(update)
+    
+    plt.show()
     
 
+def Tslider(W,Time):
+    '''slice plot at varing x over all t using a slider '''
+    nX, nDim, nT = W.shape
 
-  
+    # generate figure
+    fig = plt.figure()
+    ax = plt.subplot(111)
+    fig.subplots_adjust(left=0.25, bottom=0.25)
+    
+    # select first image
+    N = W[0,1,:].squeeze()
+    P = W[0,2,:].squeeze()
+    H = W[0,3,:].squeeze()
+    
+    
+    # display image
+    lN, = ax.plot(N)
+    lP, = ax.plot(P)
+    lH, = ax.plot(H)
+    lT, = ax.plot(range(nT),N+P+H,'--')
+    
+    plt.xlabel('Time (d)')
+    plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
+    plt.title('t-dependency at varing position ')
+    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)','Total Nitrogen in the system(x)'))
+    
+    # define slider
+    axcolor = 'lightgoldenrodyellow'
+    ax = fig.add_axes([0.25, 0.1, 0.65, 0.03])
+    
+    slider = Slider(ax, 'X position', 0, nX - 1,valinit=0, valfmt='%i')
+    
+    def update(val):
+        ind = int(slider.val)
+        
+        #ydata
+        N = W[ind,1,:].squeeze()
+        P = W[ind,2,:].squeeze()
+        H = W[ind,3,:].squeeze()
+    
+        xdata=range(nT)
+        lN.set_data(xdata,N)
+        lP.set_data(xdata,P)
+        lH.set_data(xdata,H)
+        lT.set_data(xdata,N+P+H)
+        fig.canvas.draw()
+    
+    slider.on_changed(update)
+    
+    plt.show()
+      

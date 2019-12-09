@@ -15,9 +15,12 @@ W, Time = differentialEquation.execute(M0,N0,P0,H0) #simulation with progress ba
 ''' --------------- The plots --------------- '''
 plots.test_plots(W,Time) #very insightful
 
+plots.Xslider(W,Time) # does currently not work if you run the exact code that is within the function it does work
+
+plots.Tslider(W,Time) # does currently not work if you run the exact code that is within the function it does work
 ''' -------------- The Errors ------------ '''
 if np.min(W)<0:
-    print("ERROR, negative values!")
+    raise ValueError("ERROR, negative values!")
     
 if np.max(W)>10**10:
-    print("ERROR, Unstable solution!")
+    raise ValueError("ERROR, Unstable solution!")
