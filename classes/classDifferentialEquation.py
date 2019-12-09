@@ -82,9 +82,7 @@ class differentialEquation:
         
         ''' ----------- Initialisation -------------- '''
         
-        #creating the initial w matrix
-        W0=InitialConditions.IC1(differentialEquation.dx,differentialEquation.N)
-
+    
         #creating the initial w matrix
         W=W0 # the first step, the starting point for the total data matrix w
         Time=[differentialEquation.t0] # the starting point for the time vector Time

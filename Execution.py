@@ -8,15 +8,11 @@ import numpy as np
 import plots
 from classes.classDifferentialEquation import differentialEquation as de
 
+import InitialConditions as IC
+
 ''' --------------- Execution --------------- '''
 '''initialisation'''
-w0=np.block([
-                        [de.M0],       # M0 Inital mixed layer dept     
-                        [de.N0],         # N0 Inital nutrients concentration
-                        [de.P0],    # P0 Initial pythoplankton conenctration
-                        [de.H0],    # H0 Initial herbivore concentration
-                        ])
-W0=np.tile(w0,(de.N,1,1)) #creating the inital condition over the whole of the W
+W0=IC.IC1(de.dx,de.N)
 
 '''execution on initial W0'''
 W, Time = de.execute(W0) #simulation with progress bar

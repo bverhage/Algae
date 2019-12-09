@@ -5,8 +5,9 @@ Created on Tue Oct 22 20:38:51 2019
 @author: billy
 """
 if __name__ == "__main__":
-    print("This is the Plots program.")
-    print("To run the programm run Excecution.py")
+    print("\n\nThis is the Plots program.")
+    print("To run the programm run Execution.py, but I will do that for you this time:")
+    exec(open("Execution.py").read());
     
 import numpy as np
 import matplotlib.pyplot as plt
