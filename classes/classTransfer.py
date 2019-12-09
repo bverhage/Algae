@@ -3,8 +3,6 @@
 Created on Wed Nov 27 23:47:15 2019
 
 @author: joost
-
-Describe the 
 """
 import numpy as np
 
@@ -54,7 +52,7 @@ class transfer:
         return(ans)
     
     def zetaPlus(t):
-        return np.max([0,transfer.zeta(t)])
+        return np.max([0,transfer.zeta(t)]) 
             
     def ChangeLayerDepth(t):
         ans=np.array([
@@ -126,7 +124,22 @@ class transfer:
         return(ans)
         
     def internalExchange(t,w):
-        '''Describes the internal change (source) part of the transfer'''
+        ''' Describes the internal change (source) part of the transfer
+            inputs: t is time array
+                    w matrix consisting of w=[w0,w1,w2,...,wn]
+                    with wi=[u1(i),u2(i),u3(i),...,um(i)]^T
+                    
+            Returns:The next numerical approximation of the solution.
+                    wn+1=[u1(n+1),u2(n+1),...,un(n+1)]^T
+        
+        
+        notice that w has the form
+        
+               | M | mixed layer dept             w[0,-1]
+               | N | nutrient concentration       w[1,-1]
+               | P | pythoplankton concentration  w[2,-1]
+               | H | herbivore concentration      w[3,-1]
+        '''
         #change of layer depth
         ans = transfer.ChangeLayerDepth(t)
         
