@@ -54,7 +54,7 @@ class transfer:
         return(ans)
     
     def zetaPlus(t):
-        return max(0,transfer.zeta(t)) #maybe need to numpify t here
+        return np.max([0,transfer.zeta(t)])
             
     def ChangeLayerDepth(t):
         ans=np.array([
@@ -105,7 +105,7 @@ class transfer:
     
     def PHtransfer(t,w):
         '''due to the herbevores eating the pytho plankton'''
-        grazingthreshold=np.max(w[2,-1]-transfer.P0,0)
+        grazingthreshold=np.max([w[2,-1]-transfer.P0,0])
         ans=transfer.c*(grazingthreshold)/(transfer.K+grazingthreshold)*w[3,-1]
         ans=np.array([
                      [0],

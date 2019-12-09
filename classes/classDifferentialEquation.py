@@ -101,6 +101,10 @@ class differentialEquation:
                         ])
         W0=np.tile(w0,(differentialEquation.N,1,1)) #creating the inital condition over the whole of the W
         
+        X=np.linspace(0,differentialEquation.N*differentialEquation.dx,differentialEquation.N)
+        #W0[:,1,:]=0.0*W0[:,1,:]+5*np.exp(-0.1*(X-50)**(2)).reshape(differentialEquation.N,1)
+        W0[:,2,:]=0.0*W0[:,2,:]+1*P0/differentialEquation.N*X.reshape(differentialEquation.N,1)
+        
         
         W=W0 # the first step, the starting point for the total data matrix w
         Time=[differentialEquation.t0] # the starting point for the time vector Time
