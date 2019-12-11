@@ -111,33 +111,37 @@ def f(t,w):
     
 def xi(t):
     ## rate of change of the mixed layer dept
-    t=np.mod(t,365)
-    m=np.floor(t/(365.25/12))+1
+    nt=t*100
+    t=np.mod(nt,36525)
+    #yt=np.floor(t/365.25)*365.25
+    #t=t-yt
+    #m=np.floor(t/(365.25/12))+1
+    m=t/(36525/12)
     
-    if m==1:
-        ans=(80-60)/(2*365.25/12)
-    elif m==2:
-        ans=(80-60)/(2*365.25/12)
-    elif m==3:
+    if (m>=0 and m<1):#m==1:
+        ans=(80-20)/(6*365.25/12)
+    elif (m>=1 and m<2):#m==2:
+        ans=(80-20)/(6*365.25/12)
+    elif (m>=2 and m<3):#m==3:
         ans=0
-    elif m==4:
+    elif (m>=3 and m<4):#m==4:
         ans=(20-80)/(365.25/12)
-    elif m==5:
+    elif (m>=4 and m<5):#m==5:
         ans=0
-    elif m==6:
+    elif (m>=5 and m<6):#m==6:
         ans=0
-    elif m==7:
+    elif (m>=6 and m<7):#m==7:
         ans=0
-    elif m==8:
+    elif (m>=7 and m<8):#m==8:
         ans=0
-    elif m==9:
-        ans=(60-20)/(4*365.25/12)
-    elif m==10:
-        ans=(60-20)/(4*365.25/12)
-    elif m==11:
-        ans=(60-20)/(4*365.25/12)
-    elif m==12:
-        ans=(60-20)/(4*365.25/12)
+    elif (m>=8 and m<9):#m==9:
+        ans=(80-20)/(6*365.25/12)
+    elif (m>=9 and m<10):#m==10:
+        ans=(80-20)/(6*365.25/12)
+    elif (m>=10 and m<11):#m==11:
+        ans=(80-20)/(6*365.25/12)
+    elif (m>=11 and m<12):#m==12:
+        ans=(80-20)/(6*365.25/12)
         
     return(ans)
         
@@ -163,9 +167,9 @@ def alpha(t,M,P):
     k=0.10  #?
     teta=0.5
     alfaJ=4*2   #J #?
-    #alfa=(0.4-0.3*np.cos(2*np.pi/365.25*t))
+    alfa=(0.6-0.4*np.cos(2*np.pi/365.25*t))
     beta=Q*teta/alfaJ
-    ans=((2*Q)/(M*k))*(F(beta*np.e**(k*M),teta)-F(beta,teta)-F(beta*np.e**(k*M),0)+F(beta,0))*np.min([(P**(-1/3)),1])
+    ans=((2*Q)/(M*k))*(F(beta*np.e**(k*M),teta)-F(beta,teta)-F(beta*np.e**(k*M),0)+F(beta,0))*np.min([(P**(-1/3)),1])*alfa
     return(ans)
     
 def NPtransfere(t,w):

@@ -88,7 +88,7 @@ with tqdm(total=int(np.ceil(tE/dt))) as pbar:
         
 #plots.cycleplot_plot(w,Time)
 
-#plots.MN_plot(w,Time)
+plots.MN_plot(w,Time)
 
 plots.test_plot(w,Time)
 
