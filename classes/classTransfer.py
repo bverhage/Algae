@@ -71,7 +71,7 @@ class transfer:
             '''the photosynthetic rate of phytoplankton'''
             return (0.4-0.3*np.cos(2*np.pi/365.25*t))
         
-        ans=(alpha(t)*w[1,-1]/(transfer.j+w[1,-1])-transfer.r)*w[2,-1] #Note to self (J): w[...,-1] means last value
+        ans=(alpha(t)*w[1]/(transfer.j+w[1])-transfer.r)*w[2] #Note to self (J): w[...,-1] means last value
         ans=np.array([
                      [0],
                      [-ans],
@@ -82,11 +82,11 @@ class transfer:
         
     def DeepDiffusion(t,w):
         '''Transmission of Nutrients due to deep diffusion'''
-        frac=(transfer.m + transfer.zetaPlus(t))/w[0,-1]
+        frac=(transfer.m + transfer.zetaPlus(t))/w[0]
         ans=np.array([
                      [0],
-                     [frac*(transfer.N0-w[1,-1])],
-                     [-frac*w[2,-1]],
+                     [frac*(transfer.N0-w[1])],
+                     [-frac*w[2]],
                      [0]
                      ])
         return(ans)
@@ -97,14 +97,14 @@ class transfer:
                      [0],
                      [0],
                      [0],
-                     [-transfer.zeta(t)/w[0,-1]*w[3,-1]]
+                     [-transfer.zeta(t)/w[0]*w[3]]
                      ])
         return(ans)
     
     def PHtransfer(t,w):
         '''due to the herbevores eating the pytho plankton'''
-        grazingthreshold=np.max([w[2,-1]-transfer.P0,0])
-        ans=transfer.c*(grazingthreshold)/(transfer.K+grazingthreshold)*w[3,-1]
+        grazingthreshold=np.max([w[2]-transfer.P0,0])
+        ans=transfer.c*(grazingthreshold)/(transfer.K+grazingthreshold)*w[3]
         ans=np.array([
                      [0],
                      [0],#(1-const_f)*ans],
@@ -119,7 +119,7 @@ class transfer:
                      [0],
                      [0],
                      [0],
-                     [-transfer.g*w[3,-1]]
+                     [-transfer.g*w[3]]
                      ])
         return(ans)
         

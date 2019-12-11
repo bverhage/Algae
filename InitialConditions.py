@@ -24,24 +24,24 @@ H0 = 0.166578     #mM m^-3  # inital herbevores concentration
 '''functions'''
 def UniformIC(dx,N):
     W0=np.block([
-                [M0*np.ones([100,1,1])],       # M0 Inital mixed layer dept     
-                [N0*np.ones([100,1,1])],         # N0 Inital nutrients concentration
-                [P0*np.ones([100,1,1])],    # P0 Initial pythoplankton conenctration
-                [H0*np.ones([100,1,1])],    # H0 Initial herbivore concentration
+                [M0*np.ones([N,1,1])],       # M0 Inital mixed layer dept     
+                [N0*np.ones([N,1,1])],         # N0 Inital nutrients concentration
+                [P0*np.ones([N,1,1])],    # P0 Initial pythoplankton conenctration
+                [H0*np.ones([N,1,1])],    # H0 Initial herbivore concentration
                 ])
     return(W0)
     
 def IC1(dx,N):
     W0=np.block([
-                [M0*np.ones([100,1,1])],       # M0 Inital mixed layer dept     
-                [N0*np.ones([100,1,1])],         # N0 Inital nutrients concentration
-                [P0*np.ones([100,1,1])],    # P0 Initial pythoplankton conenctration
-                [H0*np.ones([100,1,1])],    # H0 Initial herbivore concentration
+                [M0*np.ones([N,1,1])],       # M0 Inital mixed layer dept     
+                [N0*np.ones([N,1,1])],         # N0 Inital nutrients concentration
+                [P0*np.ones([N,1,1])],    # P0 Initial pythoplankton conenctration
+                [H0*np.ones([N,1,1])],    # H0 Initial herbivore concentration
                 ])
     
     X=np.linspace(0,N*dx,N) #X coridinates
     
-    W0[:,1,:]=0.0*W0[:,1,:]+5*np.exp(-0.1*(X-5)**(2)).reshape(N,1)
+    W0[:,1,:]=1*W0[:,1,:]-5*np.exp(-0.1*(X-0.5*N*dx)**(2)).reshape(N,1)
     #W0[:,2,:]=0.0*W0[:,2,:]+1*P0/N*X.reshape(N,1)
 
     return(W0)

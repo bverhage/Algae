@@ -16,7 +16,6 @@ totalDiffusion = diffusion.totalDiffusion
 from classes.classCurrent import current
 totalCurrent = current.totalCurrent
 
-import InitialConditions
 
 
 if __name__ == "__main__":    
@@ -28,13 +27,13 @@ class differentialEquation:
     
     ''' ----------- hyperparameters ----------- '''
     '''space'''
-    dx=0.1            # space jump delta x
+    dx=0.1          # space jump delta x
     N = 100         # number of delta x'es
     
     '''time'''
     t0 = 0          # time starting point
     tE = 365.25     #time ending point
-    dt = 0.5        #step time
+    dt = 0.1        #step time
 
     '''boundary values'''
     initial = 60, 9.64202509, 0.1545726, 0.166578
@@ -48,7 +47,7 @@ class differentialEquation:
                     W=[w(x1),w(x2),w(x3),...,w(xN)]
                     Where w(x1)=[w0(x1),w1(x1),...,wn(w1)]
         
-        notice that W has the form
+        notice that Wstep has the form
         
         |w1| the w matrix for x=0 
         |w2| the w matrix for x=deltax
@@ -63,22 +62,24 @@ class differentialEquation:
         boundary = differentialEquation.initial #initial values at the boundary, used for first and second derivative in current and diffusion respectively
         
         nX, nD, _ = Wstep.shape #size of grid and number of dimensions
+        Wstep=Wstep.reshape(nX,nD)
         
         #internal exchange over whole the F
-        tot = np.array([internalExchange(t,Wstep[i]) for i in range(0,len(Wstep))])
+        tot = np.array([internalExchange(t,Wstep[i]) for i in range(0,len(Wstep))]).reshape(nX,nD)
         
         #diffusion
-        tot += totalDiffusion(t,Wstep,differentialEquation.dx,boundary).reshape(((nX,nD,1)))
+        tot += totalDiffusion(t,Wstep,differentialEquation.dx,boundary)
+
         
         #current
-        tot += totalCurrent(t,Wstep,differentialEquation.dx,boundary).reshape(((nX,nD,1)))
+        tot += totalCurrent(t,Wstep,differentialEquation.dx,boundary)
         
         return tot.reshape((nX,nD,1))
         
         
     def execute(W0):
         '''Executing the method with initial condition M0,N0,P0,H0'''
-        NumMet = RK #Numerical Method
+        NumMet = RK#Numerical Method
         
         ''' ----------- Initialisation -------------- '''
         

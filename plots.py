@@ -13,6 +13,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 
+plt.close("all")
+
 
 ##------------- The plots -----------------
 def test_plots(W,Time):
@@ -163,7 +165,7 @@ def colorplot(W,Time):
     #Nutrietns
     ax = fig.add_subplot(222)
     plt.imshow(W[:,1,:].reshape((nX,len(W[:,1,:][1])),order='F'))    
-    plt.xlabel('Time (d)')
+    plt.xlabel('Time (steps)')
     plt.ylabel('x (m)')
     plt.title('Nutrients')
     plt.colorbar()

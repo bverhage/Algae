@@ -40,7 +40,7 @@ def TZ(Time,w,dt, F):
         
         
     
-    ans= w[:,:,-1:]+dt/2*(F(Time[-1],)+F(Time[-1]+dt,w[:,:,-1:]+dt*F(Time[-1],w[:,:,-1:])));
+    ans= w[:,:,-1:]+dt/2*(F(Time[-1],w[:,:,-1:])+F(Time[-1]+dt,w[:,:,-1:]+dt*F(Time[-1],w[:,:,-1:])));
     
     return(ans)
     

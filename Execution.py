@@ -4,6 +4,7 @@ Created on Tue Oct 22 20:37:58 2019
 
 @author: billy, joost
 """
+
 import numpy as np
 import plots
 from classes.classDifferentialEquation import differentialEquation as de

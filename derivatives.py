@@ -38,6 +38,8 @@ def secondDerivative(y,dx,boundary = (0,0)):
     n = len(y)
     mat = diagMatrix(n,1,-2,1)
     sd = 1/dx**2*(mat.dot(y) + unit(Lb,n,0) + unit(Rb,n,-1)) #np.eye(1,size,index)
+    
+
     return sd
 
 def firstDerivative(y,dx, boundary = (0,0)):

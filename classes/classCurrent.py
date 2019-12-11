@@ -14,7 +14,7 @@ class current:
     kH = 1 #Dimensionless factor describing the velocity of the herbivores w.r.t. water velocity
     
     def V(n,t):
-        c = 0
+        c = 0.001#0.1*np.sin(0.5/(2*np.pi)*t)
         return c*np.ones(n)
         
     '''functions'''
@@ -26,11 +26,10 @@ class current:
         #assumption divergence is zero!
         M0, N0, P0, H0 = boundary
         
-        tot = np.array([
+        tot = np.block([
                      [np.zeros(n)], #M
-                     [-np.multiply(current.V(n,t), current.kN*firstDerivative(Wstep[:,1,0],dx,(N0,N0)))], #N
-                     [-np.multiply(current.V(n,t), current.kP*firstDerivative(Wstep[:,2,0],dx,(P0,P0)))], #P
+                     [-np.multiply(current.V(n,t), current.kN*firstDerivative(Wstep[:,1],dx,(N0,N0)))], #N
+                     [-np.multiply(current.V(n,t), current.kP*firstDerivative(Wstep[:,2],dx,(P0,P0)))], #P
                      [np.zeros(n)]  #H
                      ])
-        return tot
-        #return np.zeros([4,1]) #yet to be implemented
+        return np.transpose(tot)
