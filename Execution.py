@@ -8,12 +8,11 @@ Created on Tue Oct 22 20:37:58 2019
 import numpy as np
 import plots
 from classes.classDifferentialEquation import differentialEquation as de
-
 import InitialConditions as IC
 
 ''' --------------- Execution --------------- '''
 '''initialisation'''
-W0=IC.IC1(de.dx,de.N)
+W0= IC.IC1(de.dx,de.N)
 
 '''execution on initial W0'''
 W, Time = de.execute(W0) #simulation with progress bar

@@ -12,9 +12,11 @@ class current:
     kN = 1 #Dimensionless factor describing the velocity of the nutrients w.r.t. water velocity
     kP = 1 #Dimensionless factor describing the velocity of the phytoplankton w.r.t. water velocity
     kH = 1 #Dimensionless factor describing the velocity of the herbivores w.r.t. water velocity
+    # Zoals besproken bij Deltares nemen we alle k=1, want de nutrienten en algen gaan bij benadering met gelijke snelheid als het water
     
     def V(n,t):
-        c = 0.001#0.1*np.sin(0.5/(2*np.pi)*t)
+        # If this is not constant in x, we should include another term in the pde due to the product rule! - Joost
+        c = 0.01 #0.1*np.sin(0.5/(2*np.pi)*t) 
         return c*np.ones(n)
         
     '''functions'''
