@@ -156,7 +156,7 @@ def colorplot(W,Time):
     #Depth
     fig = plt.figure()
     fig.add_subplot(221)
-    plt.imshow(W[:,0,:].reshape((nX,len(W[:,1,:][1])),order='F'))
+    plt.imshow(W[:,0,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto' )
     plt.xlabel('Time (d)')
     plt.ylabel('x (m)')
     plt.title('Depth')
@@ -164,7 +164,7 @@ def colorplot(W,Time):
 
     #Nutrietns
     fig.add_subplot(222)
-    plt.imshow(W[:,1,:].reshape((nX,len(W[:,1,:][1])),order='F'))    
+    plt.imshow(W[:,1,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')    
     plt.xlabel('Time (steps)')
     plt.ylabel('x (m)')
     plt.title('Nutrients')
@@ -172,7 +172,7 @@ def colorplot(W,Time):
 
     #Phytoplankton
     fig.add_subplot(223)
-    plt.imshow(W[:,2,:].reshape((nX,len(W[:,1,:][1])),order='F'))
+    plt.imshow(W[:,2,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')
     plt.xlabel('Time (d)')
     plt.ylabel('x (m)')
     plt.title('Phytoplankton')
@@ -180,7 +180,7 @@ def colorplot(W,Time):
     
     #Herbivores
     fig.add_subplot(224)
-    plt.imshow(W[:,3,:].reshape((nX,len(W[:,1,:][1])),order='F'))
+    plt.imshow(W[:,3,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')
     plt.xlabel('Time (d)')
     plt.ylabel('x (m)')
     plt.title('Herbivores')

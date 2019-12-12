@@ -42,7 +42,7 @@ def IC_Gauss(dx,N):
     
     X=np.linspace(0,N*dx,N) #X coridinates
     
-    W0[:,1,:]=1*W0[:,1,:]-5*np.exp(-0.1*(X-0.5*N*dx)**(2)).reshape(N,1)
+    W0[:,1,:]=1*W0[:,1,:]+10*np.exp(-0.1*(X-0.5*N*dx)**(2)).reshape(N,1)
     #W0[:,2,:]=0.0*W0[:,2,:]+1*P0/N*X.reshape(N,1)
 
     return(W0)
