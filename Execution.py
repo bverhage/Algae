@@ -12,7 +12,7 @@ import InitialConditions as IC
 
 ''' --------------- Execution --------------- '''
 '''initialisation'''
-W0= IC.IC1(de.dx,de.N)
+W0= IC.IC_Sine(de.dx,de.N)
 
 '''execution on initial W0'''
 W, Time = de.execute(W0) #simulation with progress bar
