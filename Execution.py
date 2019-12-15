@@ -6,7 +6,7 @@ Created on Tue Oct 22 20:37:58 2019
 """
 
 import numpy as np
-import plots
+from plots import TslicePlot, XslicePlot, Xslider, Tslider, colorplot
 from classes.classDifferentialEquation import differentialEquation as de
 import InitialConditions as IC
 
@@ -18,10 +18,18 @@ W0= IC.IC_Sine(de.dx,de.N)
 W, Time = de.execute(W0) #simulation with progress bar
       
 ''' --------------- The plots --------------- '''
-plots.test_plots(W,Time) #very insightful
+#plots of slices at specific t and x respectively
+tn = 200 #position of t-slice
+TslicePlot(W,Time, tn) #slice plot at tn over all x
+xn = 10 #position of t-slice
+XslicePlot(W,Time, xn) #slice plot at xn over all t
 
-plots.Xslider(W,Time) # does currently not work if you run the exact code that is within the function it does work
-plots.Tslider(W,Time) # does currently not work if you run the exact code that is within the function it does work
+#2D (x,t) with color
+colorplot(W,Time)
+
+#Slider plots
+xslide = Xslider(W,Time)
+tslide = Tslider(W,Time)
 
 ''' -------------- The Errors ------------ '''
 if np.min(W)<0:

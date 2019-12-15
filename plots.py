@@ -17,17 +17,6 @@ plt.close("all")
 
 
 ##------------- The plots -----------------
-def test_plots(W,Time):
-    '''plots all plots - Joost'''
-    
-    #plots of slices at specific t and x respectively
-    tn,xn = 200, 1 #position of slices
-    TslicePlot(W,Time, tn) #slice plot at tn over all x
-    XslicePlot(W,Time, xn) #slice plot at xn over all t
-    
-    #2D (x,t) with color
-    colorplot(W,Time)
-    
 def cycleplot_plot(w,Time):
     
     fig3 = plt.figure()
@@ -234,6 +223,7 @@ def Tslider(W,Time):
         fig.canvas.draw()
     
     slider.on_changed(update)
+    return slider
     
 
 def Xslider(W,Time):
@@ -283,4 +273,5 @@ def Xslider(W,Time):
         fig.canvas.draw()
     
     slider.on_changed(update)
+    return slider
       
