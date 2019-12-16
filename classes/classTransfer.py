@@ -64,14 +64,30 @@ class transfer:
         return(ans)
         
         
+    def Func(y,t):
+        ans=(((y**2)+(t**2))**(1/2))-t*np.log((t+((y**2)+(t**2))**(1/2))/y)
+        return(ans)
+    
+        
+    def alpha(t,M,P):
+        '''the photosynthetic rate of phytoplankton'''
+        #M=w[0,-1]
+        #P=w[2,-1]
+        Q=2
+        k=0.10  #?
+        teta=0.5
+        alfaJ=4*2   #J #?
+        alfa=(0.6-0.4*np.cos(2*np.pi/365.25*t))
+        beta=Q*teta/alfaJ
+#       ans=(0.4-0.3*np.cos(2*np.pi/365.25*t))
+        ans=((2*Q)/(M*k))*(Func(beta*np.e**(k*M),teta)-Func(beta,teta)-Func(beta*np.e**(k*M),0)+F(beta,0))*np.min([(P**(-1/3)),1])*alfa
+        return(ans)    
+    
     def NPtransfer(t,w):
         '''due to pythoplankton eating the nutrients'''
         
-        def alpha(t):
-            '''the photosynthetic rate of phytoplankton'''
-            return (0.4-0.3*np.cos(2*np.pi/365.25*t))
-        
-        ans=(alpha(t)*w[1]/(transfer.j+w[1])-transfer.r)*w[2] #Note to self (J): w[...,-1] means last value
+  
+        ans=(alpha(t,w[0],w[2])*w[1]/(transfer.j+w[1])-transfer.r)*w[2] #Note to self (J): w[...,-1] means last value
         ans=np.array([
                      [0],
                      [-ans],

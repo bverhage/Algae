@@ -6,13 +6,13 @@ Created on Tue Oct 22 20:37:58 2019
 """
 
 import numpy as np
-from plots import TslicePlot, XslicePlot, Xslider, Tslider, colorplot
+from plots import TslicePlot, XslicePlot, Xslider, Tslider, colorplot, change_plot
 from classes.classDifferentialEquation import differentialEquation as de
 import InitialConditions as IC
 
 ''' --------------- Execution --------------- '''
 '''initialisation'''
-W0= IC.IC_Sine(de.dx,de.N)
+W0= IC.IC_Gauss(de.dx,de.N)
 
 '''execution on initial W0'''
 W, Time = de.execute(W0) #simulation with progress bar
@@ -26,6 +26,8 @@ XslicePlot(W,Time, xn) #slice plot at xn over all t
 
 #2D (x,t) with color
 colorplot(W,Time)
+
+change_plot(W,Time)
 
 #Slider plots
 xslide = Xslider(W,Time)

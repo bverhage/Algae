@@ -70,34 +70,21 @@ def test_plot(w,Time):
     return;
     
 def change_plot(w,Time):
-    from DiffEquation import f,alpha
     
-    dw=f(Time[0],w[:,[0]])
+    from classes.classTransfer import transfer as t
     
-    a=np.array([alpha(Time[0],w[:,[0]])])
+    
+    a=np.array([t.alpha(Time[0],w[1,0,[0]],w[1,2,[0]])])
     
     for i in range(1, len(Time)):
         
-        ndw=f(Time[i],w[:,[i]])
         
-        na=alpha(Time[i],w[:,[i]])
+        na=t.alpha(Time[i],w[1,0,[i]],w[1,2,[i]])
         
-        dw=np.append(dw,ndw,axis=1)
+    
         a=np.append(a,na)
         
-    fig2 = plt.figure()
-    ax = fig2.add_subplot(111)
-    plt.plot(Time,dw[1,:],'--')
-    plt.plot(Time,dw[2,:],'--')
-    plt.plot(Time,dw[3,:],'--')
-    plt.plot(Time,dw[1,:]+dw[2,:]+dw[3,:],'-')
-    plt.xlabel('Time (d)')
-    plt.ylabel('concentration (mmol m^-2s^-1)')
-    plt.title('Total system')
-    ax.legend(('d/dt Nutrients','d/dt phytoplankton','d/dt herbivore','d/dt Total Nitrogietn in the system'))
-    
     fig3 = plt.figure()
-    ax = fig3.add_subplot(111)
     plt.xlabel('Time (d)')
     plt.plot(Time,a,'-')
     plt.ylabel('growfactor alpha ')
