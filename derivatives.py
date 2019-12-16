@@ -22,11 +22,11 @@ def diagMatrix(n,L,M,R):
     '''
     mat = M*np.identity(n) #diagonal
 
-    rightOff = R*np.ones(n-1) #right off-diagonal
-    np.fill_diagonal(mat[1:], rightOff)
-
     leftOff = L*np.ones(n-1) #left off-diagonal
-    np.fill_diagonal(mat[:,1:],leftOff)
+    np.fill_diagonal(mat[1:], leftOff)
+
+    rightOff = R*np.ones(n-1) #right off-diagonal
+    np.fill_diagonal(mat[:,1:],rightOff)
     return mat
 
 def secondDerivative(y,dx,boundary = (0,0)):
