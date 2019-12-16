@@ -27,6 +27,7 @@ XslicePlot(W,Time, xn) #slice plot at xn over all t
 #2D (x,t) with color
 colorplot(W,Time)
 
+#Change plot ???
 change_plot(W,Time)
 
 #Slider plots
