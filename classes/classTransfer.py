@@ -96,7 +96,7 @@ class transfer:
         '''due to pythoplankton eating the nutrients'''
         
   
-        ans=(alpha(t,w[0],w[2])*w[1]/(transfer.j+w[1])-transfer.r)*w[2] #Note to self (J): w[...,-1] means last value
+        ans=(transfer.alpha(t,w[0],w[2])*w[1]/(transfer.j+w[1])-transfer.r)*w[2] #Note to self (J): w[...,-1] means last value
         ans=np.array([
                      [0],
                      [-ans],
