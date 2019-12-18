@@ -20,10 +20,10 @@ print('------ begin of code ------')
 t0=0
 
 #time ending point
-tE=365*4
+tE=305#365
 
 #step time
-dt=0.1
+dt=2.0
 
 
 # inital conditions
@@ -31,8 +31,8 @@ dt=0.1
 #creating the initial w matrix
 
 w0=np.block([
-                [0.12],
-                [0.1],
+                [0.1162790698],
+                [0.5813953488374103],
                 ])
 
 

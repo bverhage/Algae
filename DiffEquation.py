@@ -76,7 +76,7 @@ def f(t,w):
 
 ## ----------------Non linear funcitons-------------------
 def alpha(t,w):
-    ans=(0.4+0.3*np.cos(2*np.pi/365.25*t))*w[0,-1]
+    ans=.7*w[0,-1]#(0.4+0.3*np.cos(2*np.pi/365.25*t))*w[0,-1]
     ans=np.array([
                  [ans],
                  [0]
