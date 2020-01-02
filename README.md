@@ -1,4 +1,4 @@
-# Modeleren Algae - Groep A3
+# Modelleren Algae - Groep A3
 ## Model
 
 Model dat gebruik maakt van classes zodat variabelen handig over te dragen zijn naar verschillende files. Naast het basismodel, zijn *stroming* en en *diffusie* meegenomen. Moleculair diffusie vindt niet plaats op dezelfde manier voor fytoplankton, maar op grotere schaal kunnen we de uitweiding van concencreerde benaderen met dezelfde soort vergelijkingen (met weliswaar diffusieconstanten met andere orde van grootte). De parameters die hier een rol in spelen moeten nog worden gecalibreerd/gefit of in ieder geval onderbouwd.
