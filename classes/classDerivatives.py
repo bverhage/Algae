@@ -30,7 +30,7 @@ def diagMatrix(n,L,M,R):
         return mat
     
 class derivatives:
-    BC_type = "P"
+    BC_type = "D" # Dirichelet ("D"), Neumann ("N") with 0 flux on both sides or Periodic ("P")
     
     def secondDerivative(y,dx,boundary = (0,0)):
         '''computes second derivative numerically
@@ -44,15 +44,12 @@ class derivatives:
         BC = derivatives.BC_type
         if BC == "D":
             Lb,Rb = boundary #boundary is forced to be a certain (inputted) value
-            return 1/dx**2*(mat.dot(y) + unit(Lb,n,0) + unit(Rb,n,-1)) #second derivative with Dirichelet BC
-        
         elif BC == "N":
-            raise NotImplementedError
-            return 
-        
+            Lb,Rb = y[0], y[-1] # y0 = y1 - beta*dx, with beta = 0, similarly yn+1 = yn + beta*dx
         elif BC == "P":
             Lb,Rb = y[-1],y[0] #left boundary is the value of the right end, and the right boundary is the value of the left end
-            return 1/dx**2*(mat.dot(y) + unit(Lb,n,0) + unit(Rb,n,-1)) #second derivative with periodic BC
+        
+        return 1/dx**2*(mat.dot(y) + unit(Lb,n,0) + unit(Rb,n,-1)) #second derivative with periodic BC
     
     def firstDerivative(y,dx, boundary = (0,0)):
         '''computes second derivative numerically
@@ -67,12 +64,9 @@ class derivatives:
         BC = derivatives.BC_type
         if BC == "D":
             Lb,Rb = boundary
-            return 1/(2*dx)*(mat.dot(y) - unit(Lb,n,0) + unit(Rb,n,-1)) #first derivative with Dirichelet BC
-            
         elif BC == "N":
-            raise NotImplementedError
-            return None
-            
+            Lb,Rb = y[0], y[-1] # y0 = y1 - beta*dx, with beta = 0, similarly yn+1 = yn + beta*dx
         elif BC == "P":
             Lb,Rb = y[-1],y[0] #left boundary is the value of the right end, and the right boundary is the value of the left end
-            return 1/(2*dx)*(mat.dot(y) - unit(Lb,n,0) + unit(Rb,n,-1)) #first derivative with periodic BC
+        
+        return 1/(2*dx)*(mat.dot(y) - unit(Lb,n,0) + unit(Rb,n,-1)) #first derivative with periodic BC
