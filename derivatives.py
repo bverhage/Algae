@@ -30,6 +30,7 @@ def diagMatrix(n,L,M,R):
     return mat
 
 def secondDerivative(y,dx,boundary = (0,0)):
+    #BOUNDARY ADAPTATION
     '''computes second derivative numerically
     y(x): vector
     dx: spatial step size
@@ -45,6 +46,7 @@ def secondDerivative(y,dx,boundary = (0,0)):
     return sd
 
 def firstDerivative(y,dx, boundary = (0,0)):
+    #BOUNDARY ADAPTATION
     '''computes second derivative numerically
     y(x): vector
     dx: spatial step size

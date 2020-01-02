@@ -65,13 +65,13 @@ class differentialEquation:
         Wstep=Wstep.reshape(nX,nD)
         
         #internal exchange over whole the F
-        tot = np.array([internalExchange(t,Wstep[i]) for i in range(0,len(Wstep))]).reshape(nX,nD)
+        #tot = np.array([internalExchange(t,Wstep[i]) for i in range(0,len(Wstep))]).reshape(nX,nD)
         
         #diffusion
-        tot += totalDiffusion(t,Wstep,differentialEquation.dx,boundary)
+        #tot += totalDiffusion(t,Wstep,differentialEquation.dx,boundary)
 
         #current
-        tot += totalCurrent(t,Wstep,differentialEquation.dx,boundary)
+        tot = totalCurrent(t,Wstep,differentialEquation.dx,boundary)
         
         return tot.reshape((nX,nD,1))
         
