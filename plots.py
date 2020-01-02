@@ -262,3 +262,96 @@ def Xslider(W,Time):
     slider.on_changed(update)
     return slider
       
+
+def Tanimation(W,Time):
+    '''An animation that slices T'''
+    from matplotlib.animation import FuncAnimation
+    fig, ax = plt.subplots()
+    fig.set_tight_layout(True)
+    
+    nX, nDim, nT = W.shape
+    
+    # select first image
+    N = W[:,1,0].squeeze()
+    P = W[:,2,0].squeeze()
+    H = W[:,3,0].squeeze()
+    
+    # display image
+    lN, = ax.plot(N)
+    lP, = ax.plot(P)
+    lH, = ax.plot(H)
+    lT, = ax.plot(N+P+H,'--')
+    
+    plt.xlabel('Time (d)')
+    plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
+    plt.title('t-dependency at varing position ')
+    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)','Total Nitrogen in the system(x)'))
+    
+    def update(i):
+        
+        # Update the line and the axes (with a new xlabel). Return a tuple of
+        # "artists" that have to be redrawn for this frame.
+        #ydata
+        N = W[:,1,i].squeeze()
+        P = W[:,2,i].squeeze()
+        H = W[:,3,i].squeeze()
+    
+        xdata=range(nX)
+        lN.set_data(xdata,N)
+        lP.set_data(xdata,P)
+        lH.set_data(xdata,H)
+        lT.set_data(xdata,N+P+H)
+        return lN,lP,lH,lT
+
+    anim = FuncAnimation(fig, update, frames=np.arange(0, nT), interval=200)
+
+    
+    anim.save('Tanimation.gif', dpi=80, writer='imagemagick')
+    
+def Xanimation(W,Time):
+    '''An animation that slices X'''
+    from matplotlib.animation import FuncAnimation
+    fig, ax = plt.subplots()
+    fig.set_tight_layout(True)
+    
+    nX, nDim, nT = W.shape
+    
+    # select first image
+    N = W[0,1,:].squeeze()
+    P = W[0,2,:].squeeze()
+    H = W[0,3,:].squeeze()
+    
+    # display image
+    lN, = ax.plot(N)
+    lP, = ax.plot(P)
+    lH, = ax.plot(H)
+    lT, = ax.plot(N+P+H,'--')
+    
+    plt.xlabel('Time (d)')
+    plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
+    plt.title('t-dependency at varing position ')
+    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)','Total Nitrogen in the system(x)'))
+    
+    def update(i):
+        
+        # Update the line and the axes (with a new xlabel). Return a tuple of
+        # "artists" that have to be redrawn for this frame.
+        #ydata
+        N = W[i,1,:].squeeze()
+        P = W[i,2,:].squeeze()
+        H = W[i,3,:].squeeze()
+    
+        xdata=range(nT)
+        lN.set_data(xdata,N)
+        lP.set_data(xdata,P)
+        lH.set_data(xdata,H)
+        lT.set_data(xdata,N+P+H)
+        
+        label = 'timestep {0}'.format(i)
+        ax.set_xlabel(label)
+        return lN,lP,lH,lT
+
+    anim = FuncAnimation(fig, update, frames=np.arange(0, nX), interval=200)
+    anim.save('Xanimation.gif', dpi=80, writer='imagemagick')
+
+    
