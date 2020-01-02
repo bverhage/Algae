@@ -5,7 +5,7 @@ Created on Wed Nov 27 23:59:32 2019
 @author: joost
 """
 import numpy as np
-from derivatives import secondDerivative
+from classDerivatives import secondDerivative
 
 class diffusion:
     '''diffusion factors'''
