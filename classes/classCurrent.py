@@ -5,7 +5,8 @@ Created on Wed Nov 27 23:59:50 2019
 @author: joost
 """
 import numpy as np
-from classDerivatives import firstDerivative
+from classes.classDerivatives import derivatives
+firstDerivative = derivatives.firstDerivative
 
 class current:
     '''velocity factors'''
