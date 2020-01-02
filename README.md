@@ -19,7 +19,9 @@ Daarnaast is er nog een Neumann boundary gemaakt met zero flux, deze leidt tot h
 
 ## Presentatie 
 Groep A3 
+
 Woensdagmiddag 8 januari, om 15:00 in Pulse Hall 7
+
 [Link](https://1drv.ms/p/s!AkjAOw2lgIH1mGkt4jHmnD_oNIBQ?e=SyhyR4)
 
 Voor de presentaties zijn ongeveer 12 minuten beschikbaar met daarna nog 3 minuten voor vragen. Er wordt verwacht dat iedereen die op 8 januari een presentatie geeft ook alle andere presentaties op die dag bijwoont, de eerste start om 13:45
