@@ -1,5 +1,5 @@
 # Algae
-### Modeleren
+## Modeleren
 
 Model dat gebruik maakt van classes zodat variabelen handig over te dragen zijn naar verschillende files. Naast het basismodel, zijn *stroming* en en *diffusie* meegenomen. Moleculair diffusie vindt niet plaats op dezelfde manier voor fytoplankton, maar op grotere schaal kunnen we de uitweiding van concencreerde benaderen met dezelfde soort vergelijkingen (met weliswaar diffusieconstanten met andere orde van grootte). De parameters die hier een rol in spelen moeten nog worden gecalibreerd/gefit of in ieder geval onderbouwd.
 
@@ -16,3 +16,6 @@ Een idee geopperd door prof. Heemink is een periodiek systeem introduceren (dus 
 
 #### Neumann (N)
 Daarnaast is er nog een Neumann boundary gemaakt met zero flux, deze leidt tot het meest fysische (ogende) resultaat. We gaan er hier bij uit de concentraties net buiten het reservoir gelijk is aan die op de randen van het reservoir.
+
+## Presentatie
+[Link](https://1drv.ms/p/s!AkjAOw2lgIH1mGkt4jHmnD_oNIBQ?e=SyhyR4)
