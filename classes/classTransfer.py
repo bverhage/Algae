@@ -73,22 +73,18 @@ class transfer:
             '''help function for alpha'''
             ans=(((y**2)+(t**2))**(1/2))-t*np.log((t+((y**2)+(t**2))**(1/2))/y)
             return(ans)
+            
+        '''constants'''
+        Q = 2 # Maximum photosyntetic rate
+        k = 0.10 # light attenuation by water
+        alfa=4  #low light photosyntetic slope
+        alfat=(0.6-0.4*np.cos(2*np.pi/365.25*t)) #seasonal effects       
+        tau=0.5 # day length
+        J=2 #light level at the surface at noon
+        beta=Q*tau/(alfa*J)
+       
         
-        #kunnen deze twee weg?
-        #M = w[0,-1]
-        #P = w[2,-1]
-        
-        Q = 2
-        k = 0.10  #? wat is dit ?
-        teta = 0.5
-        
-        alfaJ=4*2   #J #?
-        alfa=(0.6-0.4*np.cos(2*np.pi/365.25*t))
-        
-        beta=Q*teta/alfaJ
- 
-        #ans=(0.4-0.3*np.cos(2*np.pi/365.25*t))        
-        ans=((2*Q)/(M*k))*(g(beta*np.e**(k*M),teta)-g(beta,teta)-g(beta*np.e**(k*M),0)+g(beta,0))*np.min([(P**(-1/3)),1])*alfa
+        ans=((2*Q)/(M*k))*(g(beta*np.e**(k*M),tau)-g(beta,tau)-g(beta*np.e**(k*M),0)+g(beta,0))*np.min([(P**(-1/3)),1])*alfat
         
         return ans    
     
