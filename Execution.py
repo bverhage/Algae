@@ -6,7 +6,7 @@ Created on Tue Oct 22 20:37:58 2019
 """
 
 import numpy as np
-from plots import TslicePlot, XslicePlot, Xslider, Tslider, colorplot, change_plot
+from plots import TslicePlot, XslicePlot, Xslider, Tslider, colorplot, change_plot,Tanimation,Xanimation
 from classes.classDifferentialEquation import differentialEquation as de
 import InitialConditions as IC
 

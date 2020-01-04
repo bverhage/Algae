@@ -17,7 +17,7 @@ class current:
     
     def V(n,t):
         # If this is not constant in x, we should include another term in the pde due to the product rule! - Joost
-        c = 0.01 #0.1*np.sin(0.5/(2*np.pi)*t) 
+        c = 0.01 +0.01*np.sin(0.5/(2*np.pi)*t) 
         return c*np.ones(n)
         
     '''functions'''
