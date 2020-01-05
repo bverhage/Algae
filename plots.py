@@ -33,26 +33,19 @@ def cycleplot_plot(w,Time):
     
     return;
     
-def MN_plot(w,Time):
+def Layerdept_plot(w,Time):
     
     fig2 = plt.figure()
     
-    ax = fig2.add_subplot(121)
+    ax = fig2.add_subplot(111)
     
-    plt.plot(Time,w[0,:],'--')
+    plt.plot(Time,w[0,0,:],'--')
     plt.xlabel('Time (d)')
     plt.ylabel('dept (m)')
     plt.title('mixed layer dept')
     ax.legend('Mixed layer dept')
-    
-    ax2 = fig2.add_subplot(122)
-    
-    plt.plot(Time,w[1,:],'--')
-    plt.xlabel('Time (d)')
-    plt.ylabel('concentration Nutrients (mmol/m^2)')
-    plt.title('nutrients')
-    ax2.legend('nutrients')
     return;
+    
     
 def test_plot(w,Time):
     
@@ -73,13 +66,14 @@ def change_plot(w,Time):
     
     from classes.classTransfer import transfer as t
     
+    x=50
     
-    a=np.array([t.alpha(Time[0],w[1,0,[0]],w[1,2,[0]])])
+    a=np.array([t.alpha(Time[0],w[x,0,[0]],w[x,2,[0]])])
     
     for i in range(1, len(Time)):
         
         
-        na=t.alpha(Time[i],w[1,0,[i]],w[1,2,[i]])
+        na=t.alpha(Time[i],w[x,0,[i]],w[x,2,[i]])
         
     
         a=np.append(a,na)

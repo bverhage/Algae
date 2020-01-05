@@ -6,7 +6,7 @@ Created on Tue Oct 22 20:37:58 2019
 """
 
 import numpy as np
-from plots import TslicePlot, XslicePlot, Xslider, Tslider, colorplot, change_plot, Tanimation, Xanimation
+from plots import TslicePlot, XslicePlot, Xslider, Tslider, colorplot, change_plot, Tanimation, Xanimation, Layerdept_plot
 from classes.classDifferentialEquation import differentialEquation as de
 import InitialConditions as IC
 
@@ -30,6 +30,9 @@ colorplot(W,Time)
 #Change plot ???
 change_plot(W,Time)
 
+#mixed layder dept plot
+Layerdept_plot(W,Time)
+    
 #Slider plots
 xslide = Xslider(W,Time)
 tslide = Tslider(W,Time)
