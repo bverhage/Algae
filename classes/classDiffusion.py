@@ -22,7 +22,7 @@ class diffusion:
         tot = np.block([
                      [np.zeros(nX)], #M
                      [diffusion.Dn*secondDerivative(Wstep[:,1],dx,(N0,N0))], #N
-                     [diffusion.Dp*secondDerivative(Wstep[:,2],dx,(P0,P0))], #P
+                     [np.zeros(nX)], #P #Ik verwijder dit - Joost - diffusion.Dp*secondDerivative(Wstep[:,2],dx,(P0,P0))
                      [np.zeros(nX)]  #H
                      ])
     
