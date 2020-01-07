@@ -96,11 +96,11 @@ def TslicePlot(W,Time, tn):
     plt.plot(range(nX),W[:,1,tn],'-') #Nutrients #ERROR HERE
     plt.plot(range(nX),W[:,2,tn],'-') #Phytoplankton
     plt.plot(range(nX),W[:,3,tn],'-') #Herbivore
-    plt.plot(range(nX),sum([W[:,i,tn] for i in [1,2,3]]),'--')
+    #plt.plot(range(nX),sum([W[:,i,tn] for i in [1,2,3]]),'--')
     plt.xlabel('x (m)')
     plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
-    plt.title('x-dependency at time $t_{'+str(tn)+'}$')
-    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)','Total Nitrogen in the system(x)'))
+    plt.title('x-dependency ')#at time $t_{'+str(tn)+'}$')
+    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)'))#,'Total Nitrogen in the system(x)'))
 
 def XslicePlot(W,Time, xn):
     '''slice plot at xn over all t'''
@@ -110,14 +110,14 @@ def XslicePlot(W,Time, xn):
     ax = fig.add_subplot(111)
     
     # Temporal plot at x = xn
-    plt.plot(range(nT),W[xn,1,:],'-') #Nutrients
-    plt.plot(range(nT),W[xn,2,:],'-') #Phytoplankton
-    plt.plot(range(nT),W[xn,3,:],'-') #Herbivore
-    plt.plot(range(nT),sum([W[xn,i,:] for i in [1,2,3]]),'--')
+    plt.plot(Time,W[xn,1,:],'-') #Nutrients
+    plt.plot(Time,W[xn,2,:],'-') #Phytoplankton
+    plt.plot(Time,W[xn,3,:],'-') #Herbivore
+    #plt.plot(Time,sum([W[xn,i,:] for i in [1,2,3]]),'--')
     plt.xlabel('Time (d)')
     plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
-    plt.title('t-dependency at position $x_{'+str(xn)+'}$')
-    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)','Total Nitrogen in the system(x)'))
+    plt.title('t-dependency')# at position $x_{'+str(xn)+'}$')
+    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)'))#,'Total Nitrogen in the system(x)'))
     
 def colorplot(W,Time):
     '''Plots all quantities for on whole (X x T) domain using a colorplot'''
@@ -125,15 +125,15 @@ def colorplot(W,Time):
     
     #Depth
     fig = plt.figure()
-    fig.add_subplot(221)
-    plt.imshow(W[:,0,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto' )
-    plt.xlabel('Time (d)')
-    plt.ylabel('x (m)')
-    plt.title('Depth')
-    plt.colorbar()
+    #fig.add_subplot(221)
+    #plt.imshow(W[:,0,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto' )
+    #plt.xlabel('Time (d)')
+    #plt.ylabel('x (m)')
+    #plt.title('Depth')
+    #plt.colorbar()
 
     #Nutrietns
-    fig.add_subplot(222)
+    fig.add_subplot(311)
     plt.imshow(W[:,1,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')    
     plt.xlabel('Time (steps)')
     plt.ylabel('x (m)')
@@ -141,7 +141,7 @@ def colorplot(W,Time):
     plt.colorbar()
 
     #Phytoplankton
-    fig.add_subplot(223)
+    fig.add_subplot(312)
     plt.imshow(W[:,2,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')
     plt.xlabel('Time (d)')
     plt.ylabel('x (m)')
@@ -149,7 +149,7 @@ def colorplot(W,Time):
     plt.colorbar()
     
     #Herbivores
-    fig.add_subplot(224)
+    fig.add_subplot(313)
     plt.imshow(W[:,3,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')
     plt.xlabel('Time (d)')
     plt.ylabel('x (m)')
@@ -223,10 +223,10 @@ def Xslider(W,Time):
     
     
     # display image
-    lN, = ax.plot(N)
-    lP, = ax.plot(P)
-    lH, = ax.plot(H)
-    lT, = ax.plot(range(nT),N+P+H,'--')
+    lN, = ax.plot(Time,N)
+    lP, = ax.plot(Time,P)
+    lH, = ax.plot(Time,H)
+    lT, = ax.plot(Time,N+P+H,'--')
     
     plt.xlabel('Time (d)')
     plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
@@ -246,7 +246,7 @@ def Xslider(W,Time):
         P = W[ind,2,:].squeeze()
         H = W[ind,3,:].squeeze()
     
-        xdata=range(nT)
+        xdata=Time
         lN.set_data(xdata,N)
         lP.set_data(xdata,P)
         lH.set_data(xdata,H)
@@ -272,10 +272,11 @@ def Tanimation(W,Time):
     H = W[:,3,0].squeeze()
     
     # display image
-    lN, = ax.plot(N)
-    lP, = ax.plot(P)
-    lH, = ax.plot(H)
-    lT, = ax.plot(N+P+H,'--')
+    xdata=range(nX)
+    lN, = ax.plot(xdata,N)
+    lP, = ax.plot(xdata,P)
+    lH, = ax.plot(xdata,H)
+    lT, = ax.plot(xdata,N+P+H,'--')
     
     plt.xlabel('x (m)')
     plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
@@ -323,10 +324,11 @@ def Xanimation(W,Time):
     H = W[0,3,:].squeeze()
     
     # display image
-    lN, = ax.plot(N)
-    lP, = ax.plot(P)
-    lH, = ax.plot(H)
-    lT, = ax.plot(N+P+H,'--')
+    xdata=Time
+    lN, = ax.plot(xdata,N)
+    lP, = ax.plot(xdata,P)
+    lH, = ax.plot(xdata,H)
+    #lT, = ax.plot(N+P+H,'--')
     
     
     plt.xlabel('Time (d)')
@@ -343,15 +345,15 @@ def Xanimation(W,Time):
         P = W[i,2,:].squeeze()
         H = W[i,3,:].squeeze()
     
-        xdata=range(nT)
+        xdata=Time
         lN.set_data(xdata,N)
         lP.set_data(xdata,P)
         lH.set_data(xdata,H)
-        lT.set_data(xdata,N+P+H)
+        #lT.set_data(xdata,N+P+H)
         
         label = 'X {0}'.format(i)
         ax.set_xlabel(label)
-        return lN,lP,lH,lT
+        return lN,lP,lH#,lT
     
     # Set up formatting for the movie files
     FFwriter=animation.FFMpegWriter(fps=30, extra_args=['-vcodec', 'libx264'])
