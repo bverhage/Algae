@@ -304,8 +304,8 @@ def Tanimation(W,Time):
 
     anim = animation.FuncAnimation(fig, update, frames=np.arange(0, nT), interval=4)
 
-    
-    anim.save('Tanimation.mp4', writer="ffmpeg")
+    FFwriter=animation.FFMpegWriter(fps=30, extra_args=['-vcodec', 'libx264'])
+    anim.save('Tanimation.mp4', writer=FFwriter)
     plt.show()
     
 def Xanimation(W,Time):
@@ -354,9 +354,9 @@ def Xanimation(W,Time):
         return lN,lP,lH,lT
     
     # Set up formatting for the movie files
-    
+    FFwriter=animation.FFMpegWriter(fps=30, extra_args=['-vcodec', 'libx264'])
     anim = animation.FuncAnimation(fig, update, frames=np.arange(0, nX), interval=150)
-    anim.save('Xanimation.mp4', writer="ffmpeg")
+    anim.save('Xanimation.mp4', writer=FFwriter)
 
 
     
