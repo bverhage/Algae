@@ -1,6 +1,8 @@
 # Modelleren Algae - Groep A3
 
 ## Verslag
+De deadline is de vrijdag van de tentamenweek, dus 31-1-2020
+
 [Overleaf](https://www.overleaf.com/8818943834tfgrnfhvcsww)
 
 ## Model
