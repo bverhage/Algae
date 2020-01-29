@@ -33,7 +33,7 @@ class differentialEquation:
     '''time'''
     t0 = 0          # time starting point
     tE = 365.25     #time ending point
-    dt = 0.1        #step time
+    dt = 0.2        #step time
 
     '''boundary values'''
     initial = 60, 9.64202509, 0.1545726, 0.166578

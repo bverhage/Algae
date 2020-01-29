@@ -64,7 +64,7 @@ class transfer:
         return(ans)
     
         
-    def alpha(t,M,P):
+    def alpha(t,M,P,H):
         '''
         the photosynthetic rate of phytoplankton
         extra uitleg / documentatie zou handig zijn @billy / @rona
@@ -84,7 +84,8 @@ class transfer:
         beta=Q*tau/(alfa*J)
        
         
-        ans=((2*Q)/(M*k))*(g(beta*np.e**(k*M),tau)-g(beta,tau)-g(beta*np.e**(k*M),0)+g(beta,0))*np.min([(P**(-1/3)),1])*alfat
+        ans=((2*Q)/(M*k))*(g(beta*np.e**(k*M),tau)-g(beta,tau)-g(beta*np.e**(k*M),0)+g(beta,0))*np.min([((H+P)**(-1/3)),1])*alfat
+        
         
         return ans    
     
@@ -92,7 +93,7 @@ class transfer:
         '''due to pythoplankton eating the nutrients'''
         
   
-        ans=(transfer.alpha(t,w[0],w[2])*w[1]/(transfer.j+w[1])-transfer.r)*w[2] #Note to self (J): w[...,-1] means last value
+        ans=(transfer.alpha(t,w[0],w[2],w[3])*w[1]/(transfer.j+w[1])-transfer.r)*w[2] #Note to self (J): w[...,-1] means last value
         ans=np.array([
                      [0],
                      [-ans],

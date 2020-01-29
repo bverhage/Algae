@@ -30,7 +30,7 @@ def diagMatrix(n,L,M,R):
         return mat
     
 class derivatives:
-    BC_type = "D" # Dirichelet ("D"), Neumann ("N") with 0 flux on both sides or Periodic ("P")
+    BC_type = "N" # Dirichelet ("D"), Neumann ("N") with 0 flux on both sides or Periodic ("P")
     
     def secondDerivative(y,dx,boundary = (0,0)):
         '''computes second derivative numerically

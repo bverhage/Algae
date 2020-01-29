@@ -1,4 +1,10 @@
 # Modelleren Algae - Groep A3
+
+## Verslag
+De deadline is de vrijdag van de tentamenweek, dus 31-1-2020
+
+[Overleaf](https://www.overleaf.com/8818943834tfgrnfhvcsww)
+
 ## Model
 
 Model dat gebruik maakt van classes zodat variabelen handig over te dragen zijn naar verschillende files. Naast het basismodel, zijn *stroming* en en *diffusie* meegenomen. Moleculair diffusie vindt niet plaats op dezelfde manier voor fytoplankton, maar op grotere schaal kunnen we de uitweiding van concencreerde benaderen met dezelfde soort vergelijkingen (met weliswaar diffusieconstanten met andere orde van grootte). De parameters die hier een rol in spelen moeten nog worden gecalibreerd/gefit of in ieder geval onderbouwd.
@@ -22,6 +28,6 @@ Groep A3
 
 Woensdagmiddag 8 januari, om 15:00 in Pulse Hall 7
 
-[Link](https://1drv.ms/p/s!AkjAOw2lgIH1mGkt4jHmnD_oNIBQ?e=SyhyR4)
+[Powerpoint](https://1drv.ms/p/s!AkjAOw2lgIH1mGkt4jHmnD_oNIBQ?e=SyhyR4) en [Word](https://1drv.ms/w/s!AvzuhLWQ8RNoq0jef9jFuFiGIfxL?e=nAgKev)
 
 Voor de presentaties zijn ongeveer 12 minuten beschikbaar met daarna nog 3 minuten voor vragen. Er wordt verwacht dat iedereen die op 8 januari een presentatie geeft ook alle andere presentaties op die dag bijwoont, de eerste start om 13:45
