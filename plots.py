@@ -69,11 +69,12 @@ def change_plot(w,Time):
     x=50
     
     a=np.array([t.alpha(Time[0],w[x,0,[0]],w[x,2,[0]])])
+    a=np.array([t.alpha(Time[0],w[x,0,[0]],w[x,2,[0]],w[x,3,[0]])])
     
     for i in range(1, len(Time)):
         
         
-        na=t.alpha(Time[i],w[x,0,[i]],w[x,2,[i]])
+        na=t.alpha(Time[i],w[x,0,[i]],w[x,2,[i]],w[x,3,[i]])
         
     
         a=np.append(a,na)
@@ -117,6 +118,7 @@ def XslicePlot(W,Time, xn):
     plt.xlabel('Time (d)')
     plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
     plt.title('t-dependency')# at position $x_{'+str(xn)+'}$')
+    #plt.title('phytoplankton')
     ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)'))#,'Total Nitrogen in the system(x)'))
     
 def colorplot(W,Time):
@@ -153,7 +155,7 @@ def colorplot(W,Time):
     plt.imshow(W[:,3,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')
     plt.xlabel('Time (d)')
     plt.ylabel('x (m)')
-    plt.title('Herbivores')
+    #plt.title('Herbivores')
     plt.colorbar()
     
 def Tslider(W,Time):
