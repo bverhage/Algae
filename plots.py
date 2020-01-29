@@ -110,10 +110,10 @@ def XslicePlot(W,Time, xn):
     ax = fig.add_subplot(111)
     
     # Temporal plot at x = xn
-    plt.plot(range(nT),W[xn,1,:],'-') #Nutrients
-    plt.plot(range(nT),W[xn,2,:],'-') #Phytoplankton
-    plt.plot(range(nT),W[xn,3,:],'-') #Herbivore
-    plt.plot(range(nT),sum([W[xn,i,:] for i in [1,2,3]]),'--')
+    plt.plot(Time,W[xn,1,:],'-') #Nutrients
+    plt.plot(Time,W[xn,2,:],'-') #Phytoplankton
+    plt.plot(Time,W[xn,3,:],'-') #Herbivore
+    plt.plot(Time,sum([W[xn,i,:] for i in [1,2,3]]),'--')
     plt.xlabel('Time (d)')
     plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
     plt.title('t-dependency at position $x_{'+str(xn)+'}$')
@@ -223,10 +223,10 @@ def Xslider(W,Time):
     
     
     # display image
-    lN, = ax.plot(N)
-    lP, = ax.plot(P)
-    lH, = ax.plot(H)
-    lT, = ax.plot(range(nT),N+P+H,'--')
+    lN, = ax.plot(Time,N)
+    lP, = ax.plot(Time,P)
+    lH, = ax.plot(Time,H)
+    lT, = ax.plot(Time,N+P+H,'--')
     
     plt.xlabel('Time (d)')
     plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
@@ -246,7 +246,7 @@ def Xslider(W,Time):
         P = W[ind,2,:].squeeze()
         H = W[ind,3,:].squeeze()
     
-        xdata=range(nT)
+        xdata=Time
         lN.set_data(xdata,N)
         lP.set_data(xdata,P)
         lH.set_data(xdata,H)
@@ -272,10 +272,10 @@ def Tanimation(W,Time):
     H = W[:,3,0].squeeze()
     
     # display image
-    lN, = ax.plot(N)
-    lP, = ax.plot(P)
-    lH, = ax.plot(H)
-    lT, = ax.plot(N+P+H,'--')
+    lN, = ax.plot(Time,N)
+    lP, = ax.plot(Time,P)
+    lH, = ax.plot(Time,H)
+    lT, = ax.plot(Time,N+P+H,'--')
     
     plt.xlabel('x (m)')
     plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
@@ -323,10 +323,10 @@ def Xanimation(W,Time):
     H = W[0,3,:].squeeze()
     
     # display image
-    lN, = ax.plot(N)
-    lP, = ax.plot(P)
-    lH, = ax.plot(H)
-    lT, = ax.plot(N+P+H,'--')
+    lN, = ax.plot(Time,N)
+    lP, = ax.plot(Time,P)
+    lH, = ax.plot(Time,H)
+    lT, = ax.plot(Time,N+P+H,'--')
     
     
     plt.xlabel('Time (d)')
@@ -343,7 +343,7 @@ def Xanimation(W,Time):
         P = W[i,2,:].squeeze()
         H = W[i,3,:].squeeze()
     
-        xdata=range(nT)
+        xdata=Time
         lN.set_data(xdata,N)
         lP.set_data(xdata,P)
         lH.set_data(xdata,H)
