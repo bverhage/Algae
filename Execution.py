@@ -19,7 +19,7 @@ W, Time = de.execute(W0) #simulation with progress bar
       
 ''' --------------- The plots --------------- '''
 #plots of slices at specific t and x respectively
-tn = 200 #position of t-slice
+tn = 0 #position of t-slice
 TslicePlot(W,Time, tn) #slice plot at tn over all x
 xn = 10 #position of t-slice
 XslicePlot(W,Time, xn) #slice plot at xn over all t

@@ -36,7 +36,8 @@ class differentialEquation:
     dt = 0.2        #step time
 
     '''boundary values'''
-    initial = 60, 9.64202509, 0.1545726, 0.166578
+    #initial = 60, 9.64202509, 0.1545726, 0.166578
+    initial = 60, 9.937988391716003, 0.04556873958349539,  0.005205247442132734
     M0, N0, P0, H0 = initial
     
     ''' ----------- the total differential eq -------------- '''

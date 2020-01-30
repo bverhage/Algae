@@ -28,8 +28,8 @@ def cycleplot_plot(w,Time):
     plt.plot(Time,w[3,:],'--')
     plt.xlabel('Time(d)')
     plt.ylabel('c')
-    plt.title('Algae')
-    ax.legend(('phytoplankton','herbivore'))
+    #plt.title('Algae')
+    #ax.legend(('phytoplankton','herbivore'))
     
     return;
     
@@ -42,8 +42,8 @@ def Layerdept_plot(w,Time):
     plt.plot(Time,w[0,0,:],'--')
     plt.xlabel('Time (d)')
     plt.ylabel('dept (m)')
-    plt.title('mixed layer dept')
-    ax.legend('Mixed layer dept')
+    #plt.title('mixed layer dept')
+    #ax.legend('Mixed layer dept')
     return;
     
     
@@ -58,7 +58,7 @@ def test_plot(w,Time):
     plt.plot(Time,w[1,:]+w[2,:]+w[3,:],'-')
     plt.xlabel('Time (d)')
     plt.ylabel('concentration (mmol/m^2)')
-    plt.title('Total system')
+    #plt.title('Total system')
     ax.legend(('Nutrients','phytoplankton','herbivore','Total Nitrogietn in the system'))
     return;
     
@@ -83,7 +83,7 @@ def change_plot(w,Time):
     plt.xlabel('Time (d)')
     plt.plot(Time,a,'-')
     plt.ylabel('growfactor alpha ')
-    plt.title('alpha')
+    #plt.title('alpha')
     return;
     
 def TslicePlot(W,Time, tn):
@@ -100,8 +100,8 @@ def TslicePlot(W,Time, tn):
     #plt.plot(range(nX),sum([W[:,i,tn] for i in [1,2,3]]),'--')
     plt.xlabel('x (m)')
     plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
-    plt.title('x-dependency ')#at time $t_{'+str(tn)+'}$')
-    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)'))#,'Total Nitrogen in the system(x)'))
+    #plt.title('x-dependency ')#at time $t_{'+str(tn)+'}$')
+    #ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)'))#,'Total Nitrogen in the system(x)'))
 
 def XslicePlot(W,Time, xn):
     '''slice plot at xn over all t'''
@@ -118,9 +118,9 @@ def XslicePlot(W,Time, xn):
 
     plt.xlabel('Time (d)')
     plt.ylabel('Concentration (mmol m$^{-2}$s$^{-1}$)')
-    plt.title('t-dependency')# at position $x_{'+str(xn)+'}$')
+    #plt.title('t-dependency')# at position $x_{'+str(xn)+'}$')
     #plt.title('phytoplankton')
-    ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)'))#,'Total Nitrogen in the system(x)'))
+    #ax.legend(('Nutrients(x)','Phytoplankton(x)','Herbivore(x)'))#,'Total Nitrogen in the system(x)'))
     
 def colorplot(W,Time):
     '''Plots all quantities for on whole (X x T) domain using a colorplot'''
@@ -140,7 +140,7 @@ def colorplot(W,Time):
     plt.imshow(W[:,1,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')    
     plt.xlabel('Time (steps)')
     plt.ylabel('x (m)')
-    plt.title('Nutrients')
+    #plt.title('Nutrients')
     plt.colorbar()
 
     #Phytoplankton
@@ -148,7 +148,7 @@ def colorplot(W,Time):
     plt.imshow(W[:,2,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')
     plt.xlabel('Time (d)')
     plt.ylabel('x (m)')
-    plt.title('Phytoplankton')
+    #plt.title('Phytoplankton')
     plt.colorbar()
     
     #Herbivores
