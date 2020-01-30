@@ -31,3 +31,5 @@ Woensdagmiddag 8 januari, om 15:00 in Pulse Hall 7
 [Powerpoint](https://1drv.ms/p/s!AkjAOw2lgIH1mGkt4jHmnD_oNIBQ?e=SyhyR4) en [Word](https://1drv.ms/w/s!AvzuhLWQ8RNoq0jef9jFuFiGIfxL?e=nAgKev)
 
 Voor de presentaties zijn ongeveer 12 minuten beschikbaar met daarna nog 3 minuten voor vragen. Er wordt verwacht dat iedereen die op 8 januari een presentatie geeft ook alle andere presentaties op die dag bijwoont, de eerste start om 13:45
+
+![Test](Xanimation.mp4)
