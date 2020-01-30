@@ -1,0 +1,105 @@
+ \documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[dutch]{babel}
+\usepackage[margin=3.5cm]{geometry}
+\usepackage{etoolbox}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{changepage}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{apacite}
+\usepackage{verbatim}
+\usepackage{bm}
+\usepackage{eurosym}
+\usepackage{minted}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{subfig}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\usepackage{sectsty}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{epigraph}
+\usepackage{wrapfig}
+\usepackage[nottoc]{tocbibind}
+\usepackage{biblatex}
+\addbibresource{bibliography.bib}
+
+%hyperrefs
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\urlstyle{same}
+
+%commands
+\newcommand*\dif{\mathop{}\!\textnormal{\slshape d}}
+\newcommand{\dd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddn}[3]{\frac{\partial^{#3}#1}{{\partial #2}^{#3}}}
+\newcommand{\note}[1]{\textbf{\color{red}{#1}}}
+%1D assumption
+\newcommand{\myeq}[1]{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny #1}}}{=}}}
+\newcommand{\overEquals}[1]{\myeq{#1}}
+%vectors thick instead of arrow
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\limx}{\lim_{\Delta x \to 0}}
+
+\begin{document}
+	\title{[Algen]}
+	\author{Joost Bus\\
+	        Rona Roovers\\
+	        Joost Imhof\\
+			Billy Verhage
+			}
+	\date{}
+	\maketitle
+	\vfill
+	\noindent
+	TU Delft \hfill \today \\
+	Faculteit EWI\\ \hfill Delft
+	BSc Technische Wiskunde \hfill Supervisor: Prof. dr. ir. A.W. Heemink 
+	
+	\fancyhf{}
+	\fancyhead[C]{\thepage}
+	\pagestyle{fancy}
+	\renewcommand{\headrulewidth}{0pt}
+	\newcommand{\odds}{\textnormal{odds}}
+
+	\pagenumbering{roman}
+	\thispagestyle{empty}
+	
+	\newpage
+	
+	\newpage
+	\setcounter{tocdepth}{2}
+	\tableofcontents
+	\include{abstract}
+	
+	\newpage
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+	\include{introduction}
+	\include{theory}
+	\include{implementation}
+	\include{results}
+	\include{conclusion}
+	\newpage
+	
+	%Bibliography
+
+\printbibliography
+
+
+ 	\include{appendix}
+
+\end{document}

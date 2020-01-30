@@ -1,0 +1,32 @@
+\section{Implementatie}
+Om dit beginwaarden probleem op te lossen moet er een numerische integratie methode gebruikt worden. Neem een arbitraire continue functie $y(t)$ met als afgeleiden $f(t)$ dan wordt de waarden van $y(t)$ beschreven als volgt met $y(0)$ als begin waarden.
+\begin{equation}
+    \begin{split}
+    \frac{d}{dt} y(t) &= f(t) \\
+    y(t) &= y(0)+\int_{0}^t f(t)dt
+    \end{split}
+\end{equation}
+In het algen model geldt $y(t)=\left[M(t), N(t), P(t), H(t) \right]^T$ \\
+met respectievelijk $f(t)=\left[\frac{d}{dt}M(t), \frac{d}{dt}N(t), \frac{d}{dt}P(t), \frac{d}{dt}H(t) \right]^T$ uit vergelijking \ref{eq modeldiff}.
+
+\subsection{Discretisatie afgeleiden}
+
+\subsection{Numeriek integratie}
+Een discretisatie is nodig om numeriek waardes te bepalen. De tijd wordt gediscretiseerd in tijdstappen met lengte $\Delta t$ hiermee is dus $t_n=n\Delta t$. De numerieke benadering van $y(t_n)$ wordt aangegeven met $W_n$. Om de numerische fout te minimaliseren wordt Runge-Kutta 4 gebruikt als numerieke integraties methode. Deze staat beschreven in vergelijking \ref{eq RK4}.
+\begin{equation}
+    \begin{split}
+            W_{n+1} &= W_n+1/6(k_1+2k_2+2k_3+k_4)\\
+            met\\
+            k_1 &= \Delta t f\left(t_n,w_n\right)\\
+            k_2 &= \Delta t f\left(t_n+\frac{\Delta t}{2},w_n+\frac{k_1}{2}\right)\\
+            k_3 &= \Delta t f\left(t_n+\frac{\Delta t}{2},w_n+\frac{k_2}{2}\right)\\
+            k_4 &= \Delta t f\left(t_n+\Delta t ,w_n+k_3\right)
+            \label{eq RK4}
+    \end{split}
+\end{equation}
+
+%% BORN:: NUMERIEK BOEK
+%Runge-Kutta
+
+\subsection{Python}
+De numerieke integratie methode samen met de differentiaalvergelijkingen van \ref{eq modeldiff} en de stroming afhankelijkheid beschreven in [REVERENTIE] zijn geïmplementeerd in een geheel zelf geschreven python 3.6 code. Om alle waardes op te kunnen slaan is er gebruikt gemaakt van Numpy en voor de grafieken is Matplotlib gebruikt. Verdere informatie over de code en waar de code gevonden kan worden staat beschreven in de appendix.
