@@ -137,27 +137,31 @@ def colorplot(W,Time):
 
     #Nutrietns
     fig.add_subplot(311)
-    plt.imshow(W[:,1,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')    
+    plt.imshow(W[:,1,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto',extent=[0,Time[-1],100,0])    
     plt.xlabel('Time (steps)')
     plt.ylabel('x (m)')
     #plt.title('Nutrients')
     plt.colorbar()
+    plt.tight_layout()
 
     #Phytoplankton
     fig.add_subplot(312)
-    plt.imshow(W[:,2,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')
+    #plt.figure(figsize=(10,3.5)) 
+    plt.imshow(W[:,2,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto',extent=[0,Time[-1],100,0])
     plt.xlabel('Time (d)')
     plt.ylabel('x (m)')
     #plt.title('Phytoplankton')
     plt.colorbar()
+    plt.tight_layout()
     
     #Herbivores
     fig.add_subplot(313)
-    plt.imshow(W[:,3,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto')
+    plt.imshow(W[:,3,:].reshape((nX,len(W[:,1,:][1])),order='F'),aspect='auto',extent=[0,Time[-1],100,0])
     plt.xlabel('Time (d)')
     plt.ylabel('x (m)')
     #plt.title('Herbivores')
     plt.colorbar()
+    plt.tight_layout()
     
 def Tslider(W,Time):
     '''slice plot at varing t over all x using a slider '''
