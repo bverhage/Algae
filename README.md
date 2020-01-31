@@ -1,9 +1,10 @@
 # Modelleren Algae - Groep A3
-Project van de TuDelft Applied Mathematics Modelleren-B - AM2050-B
-J Bus
-J Imhof
-B Verhage
-R Roovers
+Project van het vak Modelleren-B - AM2050-B voor Technische Wiskunde, aan de Technische Universiteit Delft 
+
+J. Bus  
+J. Imhof  
+B. Verhage  
+R. Roovers
 
 ## Model
 Het model kan gestart worden door het bestand Execution.py te runnen.
